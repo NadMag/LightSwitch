@@ -1,80 +1,3 @@
-window.HELP_IMPROVE_VIDEOJS = false;
-
-var INTERP_BASE = "./static/interpolation/stacked";
-var NUM_INTERP_FRAMES = 240;
-
-var interp_images = [];
-function preloadInterpolationImages() {
-  for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
-    var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
-    interp_images[i] = new Image();
-    interp_images[i].src = path;
-  }
-}
-
-function setInterpolationImage(i) {
-  var image = interp_images[i];
-  image.ondragstart = function() { return false; };
-  image.oncontextmenu = function() { return false; };
-  $('#interpolation-image-wrapper').empty().append(image);
-}
-
-
-$(document).ready(function() {
-    var options = {
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        loop: true,
-        infinite: true,
-        autoplay: false,
-        autoplaySpeed: 3000,
-    };
-
-    // Debugging: Check if #results-carousel has items
-    console.log('Checking #results-carousel...');
-    const resultsItems = $('#results-carousel .item');
-    if (resultsItems.length > 0) {
-        console.log('#results-carousel has items:', resultsItems.length);
-        var resultsCarousel = bulmaCarousel.attach('#results-carousel', options);
-        resultsCarousel.forEach(carousel => {
-            carousel.on('before:show', state => {
-                console.log('Results Carousel state:', state);
-            });
-        });
-    } else {
-        console.warn('No items found in #results-carousel. Skipping initialization.');
-    }
-  
-    // Debugging: Check if #visible-carousel has items
-    console.log('Checking #visible-carousel...');
-    const visibleItems = $('#visible-carousel .item');
-    if (visibleItems.length > 0) {
-        console.log('#visible-carousel has items:', visibleItems.length);
-        var visibleCarousel = bulmaCarousel.attach('#visible-carousel', options);
-        visibleCarousel.forEach(carousel => {
-            carousel.on('before:show', state => {
-                console.log('Visible Carousel state:', state);
-            });
-        });
-    } else {
-        console.warn('No items found in #visible-carousel. Skipping initialization.');
-    }
-
-    preloadInterpolationImages();
-
-    $('#interpolation-slider').on('input', function(event) {
-      setInterpolationImage(this.value);
-    });
-    setInterpolationImage(0);
-    $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
-
-    bulmaSlider.attach();
-
-    loadDemo();
-
-})
-
-// Demo
 const demo_colors = ["#f06", "#f4d", "#94f", "#09f", "#7c3", "#fe0", "#fb0"]
 const cartesian = (...a) => a.reduce((a, b) => a.flatMap(d => b.map(e => [d, e].flat())));
 const demo_range = (min, max) => Array.from({ length: max - min + 1 }, (_, i) => min + i);
@@ -88,7 +11,7 @@ function valueToName(slider, value){
   // return `${String(slider_group.dataset.base)}${String(value * multiplier).padStart(3, '0')}`;
 }
 
-function getImageFileName(sliders, values, example_name="") {
+function getImageFileName(sliders, values) {
   let sliders_file_names = [];
   let single_lamp_off_image = values[0] === 0;
   let first_lamp_index = sliders[0].dataset.lamp;
@@ -96,10 +19,6 @@ function getImageFileName(sliders, values, example_name="") {
     sliders_file_names.push(valueToName(sliders[i], values[i]));
     single_lamp_off_image = single_lamp_off_image && sliders[i].dataset.lamp === first_lamp_index;
   }
-  if (example_name == "example_lego_jazzclub") {
-    sliders_file_names.push("009");
-  }
-
 
   if (single_lamp_off_image)
     return sliders_file_names[0];
@@ -111,10 +30,8 @@ function getImagePath(slider_group, sliders, values=[]){
     if (values.length === 0)
       values = sliders.map(slider => slider.value);
     values = values.map(value => parseInt(value));
-    example_path = String(slider_group.dataset.base)
-    example_name = example_path.split("/").slice(-2,-1)[0];
-    let image_file_name = getImageFileName(sliders, values, example_name);
-    return `${example_path}${String(image_file_name)}.jpg`;
+    let image_file_name = getImageFileName(sliders, values);
+    return `${String(slider_group.dataset.base)}${String(image_file_name)}.jpg`;
 }
 
 
@@ -134,7 +51,7 @@ function pre_load_images(slider_group, sliders) {
   })
 }
 
-function loadDemo() {
+export function loadDemo() {
     const images = document.querySelectorAll('.demo_img');
     const sliderGroups = document.querySelectorAll('.slider_group');
     sliderGroups.forEach((slider_group, group_index) => {
@@ -153,7 +70,7 @@ function loadDemo() {
         slider.style.height = 20 + "px";
         slider.style.border = "2px solid white";
         slider.style.background = "transparent";
-        slider.style.setProperty('--SliderColor', "red")
+        slider.style.setProperty('--SliderColor', "white")
         }
         else{
         slider.style.setProperty('--SliderColor', demo_colors[slider.value])
@@ -167,12 +84,6 @@ function loadDemo() {
         img.src = getImagePath(slider_group, sliders);
         });
     });
-    demo_slider_containers.forEach(demo_slider_container => {
-      let rect = img.getBoundingClientRect();
-      demo_slider_container.style.display = 'block';
-      demo_slider_container.style.left = rect.left + img.clientWidth * parseFloat(demo_slider_container.dataset.x) +  'px';
-      demo_slider_container.style.top =  window.scrollY + rect.top + img.clientHeight * parseFloat(demo_slider_container.dataset.y) + 'px';
-    });
 
     function imgEnter(event) {
         demo_slider_containers.forEach(demo_slider_container => {
@@ -184,7 +95,10 @@ function loadDemo() {
         img.removeEventListener('mouseenter', imgEnter);
     }
 
-    function imgExit(event) {
+
+    img.addEventListener('mouseenter', imgEnter);
+
+    img.addEventListener('mouseout', (event) =>  {
         let mouse_x = event.clientX;
         let mouse_y = event.clientY;
         let rect = img.getBoundingClientRect();
@@ -195,10 +109,7 @@ function loadDemo() {
         });
 
         img.addEventListener('mouseenter', imgEnter);
-    };
+    });
 
-    // img.addEventListener('mouseenter', imgEnter);
-    // img.addEventListener('mouseout', imgExit);
-});
-
+    })
 };

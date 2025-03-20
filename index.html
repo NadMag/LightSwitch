@@ -39,6 +39,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
 
@@ -149,55 +150,48 @@
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="content item item-two-lamps">
+          <img class="demo_img"  src="./static/images/example_two_lamps/000_000.jpg"> <br> <br>
+          <div class="slider_group" data-base="./static/images/example_two_lamps/">
+              <div class="demo_slider_container" data-x=".205" data-y=".5" >
+                  <input type="range" min="0" max="20" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="5">
+              </div>
+              <div class="demo_slider_container" data-x=".755" data-y=".28" >
+                  <input type="range" min="0" max="20" value="0" class="slider" data-lamp="1" data-type="power" data-multiplier="5">
+              </div>
+          </div>
         </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="content item item-tatami">
+          <img class="demo_img"  src="./static/images/tatami_seq_sr/007_006_000.jpg"> <br> <br>
+          <div class="slider_group" data-base="./static/images/tatami_seq_sr/">
+              <div class="demo_slider_container" data-x=".42" data-y=".4" >
+                  <input type="range" min="0" max="7" value="7" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
+              </div>
+              <div class="demo_slider_container" data-x=".85" data-y=".02" >
+                  <input type="range" min="0" max="6" value="6" class="slider" data-lamp="1" data-type="power" data-multiplier="1">
+              </div>
+              <div class="demo_slider_container" data-x=".77" data-y=".45" >
+                  <input type="range" min="0" max="5" value="0" class="slider" data-lamp="2" data-type="power" data-multiplier="1">
+              </div>
+          </div>
         </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="content item item-lego">
+            <img class="demo_img"  src="./static/images/example_lego_jazzclub/000_000_000_009.jpg"> <br> <br>
+            <div class="slider_group" data-base="./static/images/example_lego_jazzclub/">
+                <div class="demo_slider_container" data-x=".77" data-y=".74" >
+                    <input type="range" min="0" max="6" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="12">
+                </div>
+                <div class="demo_slider_container" data-x=".34" data-y=".45" >
+                    <input type="range" min="0" max="6" value="0" class="slider" data-lamp="2" data-type="power" data-multiplier="15">
+                </div>
+                <div class="demo_slider_container" data-x=".46" data-y=".66" >
+                    <input type="range" min="0" max="6" value="0" class="slider" data-lamp="3" data-type="power" data-multiplier="17">
+                </div>
+                <!-- <div class="demo_slider_container" data-x=".8" data-y=".2" >
+                    <input type="range" min="0" max="9" value="9" class="slider" data-lamp="4" data-type="power" data-multiplier="1">
+                </div> -->
+            </div>
         </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -249,10 +243,22 @@
           <p>
             Using <i>LightSwitch</i> you can turn on or off visible light sources, <mark> add another sentence on diversity / scene adherence</mark>.
           </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
+          <!-- <div id="visible-carousel" class="carousel results-carousel"> -->
+            <!-- <div class="item item-astro"> -->
+              <img id="astro_off"  src="./static/images/visual_lights/astro/astro_dark.png"> 
+            <!-- </div> -->
+          <!-- </div> -->
+          <!-- <div class="content">
+            <img class="demo_img"  src="./static/images/example_two_lamps/000_000.jpg"> <br> <br>
+            <div class="slider_group" data-base="./static/images/example_two_lamps/">
+                <div class="demo_slider_container" data-x=".205" data-y=".5" >
+                    <input type="range" min="0" max="20" value="0" class="demo_slider" data-lamp="0" data-type="power" data-multiplier="5">
+                </div>
+                <div class="demo_slider_container" data-x=".755" data-y=".28" >
+                    <input type="range" min="0" max="20" value="0" class="demo_slider" data-lamp="1" data-type="power" data-multiplier="5">
+                </div>
+            </div>
+          </div> -->
         </div>
       </div>
       <!--/ Visual Effects. -->
@@ -417,5 +423,6 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

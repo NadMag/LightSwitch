@@ -155,3 +155,74 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+
+/* Demo CSS */
+.demo-img {
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  /*width: 800px;*/
+  /*align-items: center;*/
+  /*flex-basis: 40%*/
+  margin-left: 25%;
+  margin-right: 25%;
+  /*display: block;*/
+  position: absolute;
+}
+
+
+.demo_slider_container {
+  width: 160px; /* Adjust as needed */
+  align-items: center;
+  text-align: center;
+  /*height: 60px; !* Adjust as needed *!*/
+  /* display: none; */
+  position: relative;
+  
+
+}
+
+.demo_slider {
+  --SliderColor: hsl(50, 100%, 50%);
+  -webkit-appearance: none;
+  width: 20px;
+  height: 5px;
+  outline: none;
+  opacity: 1; /* Initially hide the slider */
+  transition: height,width .5s ease; /* Smooth transition */
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #f06 0%, #f06 2%, #f4d 18%, #94f 34%, #09f 50%, #7c3 66%, #fe0 82%, #fb0 98%, #fb0 100%);
+
+}
+
+.demo_slider_container:hover .demo_slider {
+  width: 100px;
+  opacity: 1; /* Show the slider on hover */
+}
+.demo_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--SliderColor);
+  cursor: pointer;
+  /*border: 4px solid red; !* White border *!*/
+  transition: width,height .3s ease; /* Smooth transition */
+}
+.demo_slider_container:hover .demo_slider::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  /*border: 4px solid white; !* White border *!*/
+}
+
+.content{
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  /*padding: 5px 5px;*/
+  /*margin: 5px auto;*/
+}
