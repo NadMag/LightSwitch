@@ -26,7 +26,7 @@
         rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma-carousel.min.css"> -->
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
@@ -39,7 +39,7 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
 
@@ -149,49 +149,71 @@
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="content item item-two-lamps">
-          <img class="demo_img"  src="./static/images/example_two_lamps/000_000.jpg"> <br> <br>
-          <div class="slider_group" data-base="./static/images/example_two_lamps/">
-              <div class="demo_slider_container" data-x=".205" data-y=".5" >
-                  <input type="range" min="0" max="20" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="5">
-              </div>
-              <div class="demo_slider_container" data-x=".755" data-y=".28" >
-                  <input type="range" min="0" max="20" value="0" class="slider" data-lamp="1" data-type="power" data-multiplier="5">
-              </div>
-          </div>
-        </div>
-        <div class="content item item-tatami">
-          <img class="demo_img"  src="./static/images/tatami_seq_sr/007_006_000.jpg"> <br> <br>
-          <div class="slider_group" data-base="./static/images/tatami_seq_sr/">
-              <div class="demo_slider_container" data-x=".42" data-y=".4" >
-                  <input type="range" min="0" max="7" value="7" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
-              </div>
-              <div class="demo_slider_container" data-x=".85" data-y=".02" >
-                  <input type="range" min="0" max="6" value="6" class="slider" data-lamp="1" data-type="power" data-multiplier="1">
-              </div>
-              <div class="demo_slider_container" data-x=".77" data-y=".45" >
-                  <input type="range" min="0" max="5" value="0" class="slider" data-lamp="2" data-type="power" data-multiplier="1">
-              </div>
-          </div>
-        </div>
-        <div class="content item item-lego">
-            <img class="demo_img"  src="./static/images/example_lego_jazzclub/000_000_000_009.jpg"> <br> <br>
-            <div class="slider_group" data-base="./static/images/example_lego_jazzclub/">
-                <div class="demo_slider_container" data-x=".77" data-y=".74" >
-                    <input type="range" min="0" max="6" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="12">
+      <div id="demoCarousel" class="carousel slide" data-bs-theme="dark">
+        <div class="carousel-inner">
+          <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
+            <div class = "inner-div">
+              <div class = "centered-div">
+                <img class="demo_img"  src="./static/images/example_two_lamps/000_000.jpg"> <br> <br>
+                <div class="slider_group" data-base="./static/images/example_two_lamps/">
+                    <div class="demo_slider_container" data-x=".13" data-y=".45" >
+                        <input type="range" min="0" max="20" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="5">
+                    </div>
+                    <div class="demo_slider_container" data-x=".68" data-y=".18" >
+                        <input type="range" min="0" max="20" value="0" class="slider" data-lamp="1" data-type="power" data-multiplier="5">
+                    </div>
                 </div>
-                <div class="demo_slider_container" data-x=".34" data-y=".45" >
-                    <input type="range" min="0" max="6" value="0" class="slider" data-lamp="2" data-type="power" data-multiplier="15">
-                </div>
-                <div class="demo_slider_container" data-x=".46" data-y=".66" >
-                    <input type="range" min="0" max="6" value="0" class="slider" data-lamp="3" data-type="power" data-multiplier="17">
-                </div>
-                <!-- <div class="demo_slider_container" data-x=".8" data-y=".2" >
-                    <input type="range" min="0" max="9" value="9" class="slider" data-lamp="4" data-type="power" data-multiplier="1">
-                </div> -->
+              </div>
             </div>
+          </div>
+          <div class="demo_carousel_item content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
+            <div class = "inner-div">
+              <div class = "centered-div">
+                <img class="demo_img"  src="./static/images/tatami_seq_sr/007_006_000.jpg"> <br> <br>
+                <div class="slider_group" data-base="./static/images/tatami_seq_sr/">
+                    <div class="demo_slider_container" data-x=".42" data-y=".4" >
+                        <input type="range" min="0" max="7" value="7" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
+                    </div>
+                    <div class="demo_slider_container" data-x=".85" data-y=".02" >
+                        <input type="range" min="0" max="6" value="6" class="slider" data-lamp="1" data-type="power" data-multiplier="1">
+                    </div>
+                    <div class="demo_slider_container" data-x=".77" data-y=".45" >
+                        <input type="range" min="0" max="5" value="0" class="slider" data-lamp="2" data-type="power" data-multiplier="1">
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="demo_carousel_item content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
+            <div class = "inner-div">
+              <div class = "centered-div">
+                <img class="demo_img"  src="./static/images/example_lego_jazzclub/000_000_000_009.jpg"> <br> <br>
+                <div class="slider_group" data-base="./static/images/example_lego_jazzclub/">
+                    <div class="demo_slider_container" data-x=".77" data-y=".74" >
+                        <input type="range" min="0" max="6" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="12">
+                    </div>
+                    <div class="demo_slider_container" data-x=".34" data-y=".45" >
+                        <input type="range" min="0" max="6" value="0" class="slider" data-lamp="2" data-type="power" data-multiplier="15">
+                    </div>
+                    <div class="demo_slider_container" data-x=".46" data-y=".66" >
+                        <input type="range" min="0" max="6" value="0" class="slider" data-lamp="3" data-type="power" data-multiplier="17">
+                    </div>
+                    <!-- <div class="demo_slider_container" data-x=".8" data-y=".2" >
+                        <input type="range" min="0" max="9" value="9" class="slider" data-lamp="4" data-type="power" data-multiplier="1">
+                    </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <button class="carousel-control-prev my_carousel-control" type="button" data-bs-target="#demoCarousel" data-bs-slide="prev" style="height:40px; width:40px; top:50%; transform: translateY(-50%)">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next my_carousel-control" type="button" data-bs-target="#demoCarousel" data-bs-slide="next" style="height:40px; width:40px; top:50%; transform: translateY(-50%)">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
     </div>
   </div>
 </section>
@@ -229,154 +251,6 @@
     <!--/ Paper video. -->
   </div>
 </section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visible Light Sources</h2>
-          <p>
-            Using <i>LightSwitch</i> you can turn on or off visible light sources, <mark> add another sentence on diversity / scene adherence</mark>.
-          </p>
-          <!-- <div id="visible-carousel" class="carousel results-carousel"> -->
-            <!-- <div class="item item-astro"> -->
-              <img id="astro_off"  src="./static/images/visual_lights/astro/astro_dark.png"> 
-            <!-- </div> -->
-          <!-- </div> -->
-          <!-- <div class="content">
-            <img class="demo_img"  src="./static/images/example_two_lamps/000_000.jpg"> <br> <br>
-            <div class="slider_group" data-base="./static/images/example_two_lamps/">
-                <div class="demo_slider_container" data-x=".205" data-y=".5" >
-                    <input type="range" min="0" max="20" value="0" class="demo_slider" data-lamp="0" data-type="power" data-multiplier="5">
-                </div>
-                <div class="demo_slider_container" data-x=".755" data-y=".28" >
-                    <input type="range" min="0" max="20" value="0" class="demo_slider" data-lamp="1" data-type="power" data-multiplier="5">
-                </div>
-            </div>
-          </div> -->
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Ambient Light</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              By disentangling light sources we are able to control the intensity of ambient light without affecting target light sources.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
-  </div>
-</section>
-
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">

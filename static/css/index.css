@@ -158,17 +158,18 @@ body {
 
 
 /* Demo CSS */
-.demo-img {
+.demo_img {
   align-items: center;
   text-align: center;
   vertical-align: middle;
   /*width: 800px;*/
   /*align-items: center;*/
   /*flex-basis: 40%*/
-  margin-left: 25%;
-  margin-right: 25%;
+  /* margin-left: 25%;
+  margin-right: 25%; */
   /*display: block;*/
-  position: absolute;
+  /* position: absolute; */
+  max-height: 75vh;
 }
 
 
@@ -177,10 +178,17 @@ body {
   align-items: center;
   text-align: center;
   /*height: 60px; !* Adjust as needed *!*/
-  /* display: none; */
-  position: relative;
-  
+  display: none;
+  position: absolute;
+}
 
+.slider_group {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  max-height: 75vh;
 }
 
 .demo_slider {
@@ -226,3 +234,40 @@ body {
   /*padding: 5px 5px;*/
   /*margin: 5px auto;*/
 }
+
+.my_carousel-control {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.demo_carousel_item {
+  overflow: hidden;
+}
+
+.inner-div{
+  float:left;
+   left:50%;
+   position: relative;
+}
+
+.centered-div{
+   position: relative;
+   float:left;
+   left: -50% ;
+   width: auto;
+}
+
+/* .carousel-control.left, 
+.carousel-control.right {
+    background-image: none;
+}
+
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right {
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */

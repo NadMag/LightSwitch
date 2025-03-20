@@ -30,35 +30,40 @@ $(document).ready(function() {
         autoplaySpeed: 3000,
     };
 
-    // Debugging: Check if #results-carousel has items
-    console.log('Checking #results-carousel...');
-    const resultsItems = $('#results-carousel .item');
-    if (resultsItems.length > 0) {
-        console.log('#results-carousel has items:', resultsItems.length);
-        var resultsCarousel = bulmaCarousel.attach('#results-carousel', options);
-        resultsCarousel.forEach(carousel => {
-            carousel.on('before:show', state => {
-                console.log('Results Carousel state:', state);
-            });
-        });
-    } else {
-        console.warn('No items found in #results-carousel. Skipping initialization.');
-    }
+    // // Debugging: Check if #results-carousel has items
+    // console.log('Checking #results-carousel...');
+    // const resultsItems = $('#results-carousel .item');
+    // if (resultsItems.length > 0) {
+    //     console.log('#results-carousel has items:', resultsItems.length);
+    //     var resultsCarousel = bulmaCarousel.attach('#results-carousel', options);
+    //     resultsCarousel.forEach(carousel => {
+    //         carousel.on('before:show', state => {
+    //             console.log('Results Carousel state:', state);
+    //         });
+    //     });
+    // } else {
+    //     console.warn('No items found in #results-carousel. Skipping initialization.');
+    // }
   
-    // Debugging: Check if #visible-carousel has items
-    console.log('Checking #visible-carousel...');
-    const visibleItems = $('#visible-carousel .item');
-    if (visibleItems.length > 0) {
-        console.log('#visible-carousel has items:', visibleItems.length);
-        var visibleCarousel = bulmaCarousel.attach('#visible-carousel', options);
-        visibleCarousel.forEach(carousel => {
-            carousel.on('before:show', state => {
-                console.log('Visible Carousel state:', state);
-            });
-        });
-    } else {
-        console.warn('No items found in #visible-carousel. Skipping initialization.');
-    }
+    // // Debugging: Check if #visible-carousel has items
+    // console.log('Checking #visible-carousel...');
+    // const visibleItems = $('#visible-carousel .item');
+    // if (visibleItems.length > 0) {
+    //     console.log('#visible-carousel has items:', visibleItems.length);
+    //     var visibleCarousel = bulmaCarousel.attach('#visible-carousel', options);
+    //     visibleCarousel.forEach(carousel => {
+    //         carousel.on('before:show', state => {
+    //             console.log('Visible Carousel state:', state);
+    //         });
+    //     });
+    // } else {
+    //     console.warn('No items found in #visible-carousel. Skipping initialization.');
+    // }
+
+    // Prevent carousel from intercepting slider interactions
+    $('.slider').on('mousedown touchstart', function(event) {
+        event.stopPropagation();
+    });
 
     preloadInterpolationImages();
 
@@ -168,18 +173,22 @@ function loadDemo() {
         });
     });
     demo_slider_containers.forEach(demo_slider_container => {
-      let rect = img.getBoundingClientRect();
+      // rect = demo_slider_container.parentElement.parentElement.getElementsByTagName('img')[0].getBoundingClientRect();
+      // height = rect.height;
+      // width = rect.width;
+      // demo_slider_container.style.width = width + 'px';
+      // demo_slider_container.style.height = height + 'px';
       demo_slider_container.style.display = 'block';
-      demo_slider_container.style.left = rect.left + img.clientWidth * parseFloat(demo_slider_container.dataset.x) +  'px';
-      demo_slider_container.style.top =  window.scrollY + rect.top + img.clientHeight * parseFloat(demo_slider_container.dataset.y) + 'px';
+      demo_slider_container.style.left = parseFloat(demo_slider_container.dataset.x)*100 +  '%';
+      demo_slider_container.style.top =  parseFloat(demo_slider_container.dataset.y)*100 + '%';
     });
 
     function imgEnter(event) {
         demo_slider_containers.forEach(demo_slider_container => {
         let rect = img.getBoundingClientRect();
         demo_slider_container.style.display = 'block';
-        demo_slider_container.style.left = rect.left + img.clientWidth * parseFloat(demo_slider_container.dataset.x) +  'px';
-        demo_slider_container.style.top =  window.scrollY + rect.top + img.clientHeight * parseFloat(demo_slider_container.dataset.y) + 'px';
+        demo_slider_container.style.left = parseFloat(demo_slider_container.dataset.x)*100 +  '%';
+        demo_slider_container.style.top =  parseFloat(demo_slider_container.dataset.y)*100 + '%';
         });
         img.removeEventListener('mouseenter', imgEnter);
     }
