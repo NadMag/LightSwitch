@@ -156,9 +156,9 @@ function loadDemo() {
     sliders.forEach(slider => {
         if (slider.dataset.type === "power"){
         slider.style.height = 20 + "px";
-        slider.style.border = "2px solid white";
+        slider.style.border_color = "white";
         slider.style.background = "transparent";
-        slider.style.setProperty('--SliderColor', "red")
+        slider.style.setProperty('--SliderColor', "white")
         }
         else{
         slider.style.setProperty('--SliderColor', demo_colors[slider.value])

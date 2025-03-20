@@ -169,12 +169,12 @@ body {
   margin-right: 25%; */
   /*display: block;*/
   /* position: absolute; */
-  max-height: 75vh;
+  max-height: 85vh;
 }
 
 
 .demo_slider_container {
-  width: 160px; /* Adjust as needed */
+  width: 100px; 
   align-items: center;
   text-align: center;
   /*height: 60px; !* Adjust as needed *!*/
@@ -182,13 +182,14 @@ body {
   position: absolute;
 }
 
+
 .slider_group {
   position: absolute;
   top: 0px;
   left: 0px;
   height: 100%;
   width: 100%;
-  max-height: 75vh;
+  max-height: 85vh;
 }
 
 .demo_slider {
@@ -201,13 +202,23 @@ body {
   transition: height,width .5s ease; /* Smooth transition */
   border-radius: 10px;
   background-image: linear-gradient(to right, #f06 0%, #f06 2%, #f4d 18%, #94f 34%, #09f 50%, #7c3 66%, #fe0 82%, #fb0 98%, #fb0 100%);
-
 }
 
-.demo_slider_container:hover .demo_slider {
+.demo_slider_container>input {
+  width: 0px;
+  border: 0px;
+  transition: all .5s ease; /* Smooth transition */
+  accent-color: var(--SliderColor);
+}
+
+.demo_slider_container:hover>input{
   width: 100px;
   opacity: 1; /* Show the slider on hover */
+  border: 2px solid white;
+  transition: all .5s ease; /* Smooth transition */
+  accent-color: var(--SliderColor);
 }
+
 .demo_slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -217,7 +228,7 @@ body {
   background: var(--SliderColor);
   cursor: pointer;
   /*border: 4px solid red; !* White border *!*/
-  transition: width,height .3s ease; /* Smooth transition */
+  transition: all .5s ease; /* Smooth transition */
 }
 .demo_slider_container:hover .demo_slider::-webkit-slider-thumb {
   width: 16px;
