@@ -19,8 +19,8 @@ body {
 
 
 .teaser .hero-body {
-  padding-top: 0;
-  padding-bottom: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .teaser {
@@ -169,12 +169,13 @@ body {
   margin-right: 25%; */
   /*display: block;*/
   /* position: absolute; */
-  max-height: 85vh;
+  max-height: 90vh;
 }
 
 
 .demo_slider_container {
-  width: 100px; 
+  min-width: 75px;
+  width: 10%; /* Adjust as needed */
   align-items: center;
   text-align: center;
   /*height: 60px; !* Adjust as needed *!*/
@@ -189,7 +190,7 @@ body {
   left: 0px;
   height: 100%;
   width: 100%;
-  max-height: 85vh;
+  max-height: 90vh;
 }
 
 .demo_slider {
@@ -212,7 +213,7 @@ body {
 }
 
 .demo_slider_container:hover>input{
-  width: 100px;
+  width: 100%;
   opacity: 1; /* Show the slider on hover */
   border: 2px solid white;
   transition: all .5s ease; /* Smooth transition */
@@ -253,6 +254,10 @@ body {
   transform: translateY(-50%);
 }
 
+.white_carousel-control {
+  filter: invert(0) brightness(100%);
+}
+
 .demo_carousel_item {
   overflow: hidden;
 }
@@ -270,15 +275,121 @@ body {
    width: auto;
 }
 
-/* .carousel-control.left, 
-.carousel-control.right {
-    background-image: none;
+/* Multiple items carousel */
+
+.multi-carousel-inner {
+ 
+  display: flex;
 }
 
-.carousel-control .glyphicon-chevron-left,
-.carousel-control .glyphicon-chevron-right {
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-} */
+.multi-carousel-item {
+  margin-right: 0;
+  flex: 0 0 33.2%;
+  display: block;
+  margin: 0 .5em;
+}
+
+.img-wrapper {
+  max-width: 100%;
+  height: 50vh;
+}
+
+.img-wrapper>img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Gemini carousel overlay */
+.carousel-overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Removed background, color, etc.  We're just positioning now. */
+  display: none;  /*  Initially hidden; now using display instead of opacity */
+  pointer-events: none; /* Starts with no pointer events */
+}
+
+.carousel-overlay img{ /* Overlay image styling */
+ display: block; /*  Remove extra space. */
+ width: 100%;
+ height: 100%;
+ border-radius: 8px;
+}
+
+.carousel-overlay.active {
+  display: block; /*  Show on active */
+  pointer-events: auto;  /*Allow interaction once shown.*/
+}
+
+.inactive {
+  display: none; /*  Hide on inactive */
+  pointer-events: none; /* No interaction when hidden */
+}
+
+.note {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  position: relative;
+  width: 30%;
+  left: 35%;
+  margin-top: 16px; 
+  font-size: 1rem; 
+  line-height: 1.5; 
+  font-weight: 500;
+  background-color: rgb(229, 246, 253);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  padding: 6px 16px;
+
+}
+
+.svg-icon {
+  height: 3vh;
+  margin-left: 8px; 
+  margin-right: 8px; 
+  vertical-align: bottom;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+
+/* Gemini Pointlight */
+
+.mainImage {
+  width: 100%;  /* Make image fill container */
+  height: 100%;
+  object-fit: cover; /* Important: similar to background-size: cover */
+  object-position: center; /* Important: similar to background-position: center */
+}
+
+
+.overlay-button {
+  position: absolute;
+  width: 4%;
+  height: 4%;
+  border-radius: 50%;
+  background-color: rgba(229, 246, 253, 0.5);
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+  /* Prevent text selection on mobile */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
+}
+
+.overlay-button:hover {
+  background-color: rgba(229, 246, 253, 0.7);
+  border-color: rgba(0, 0, 0, 0.9);
+}
+
+.hidden {
+  display: none; /* Hide the element */
+}

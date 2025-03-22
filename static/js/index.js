@@ -21,61 +21,42 @@ function setInterpolationImage(i) {
 
 
 $(document).ready(function() {
-    var options = {
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        loop: true,
-        infinite: true,
-        autoplay: false,
-        autoplaySpeed: 3000,
-    };
+  var options = {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    loop: true,
+    infinite: true,
+    autoplay: false,
+    autoplaySpeed: 3000,
+  }
 
-    // // Debugging: Check if #results-carousel has items
-    // console.log('Checking #results-carousel...');
-    // const resultsItems = $('#results-carousel .item');
-    // if (resultsItems.length > 0) {
-    //     console.log('#results-carousel has items:', resultsItems.length);
-    //     var resultsCarousel = bulmaCarousel.attach('#results-carousel', options);
-    //     resultsCarousel.forEach(carousel => {
-    //         carousel.on('before:show', state => {
-    //             console.log('Results Carousel state:', state);
-    //         });
-    //     });
-    // } else {
-    //     console.warn('No items found in #results-carousel. Skipping initialization.');
-    // }
-  
-    // // Debugging: Check if #visible-carousel has items
-    // console.log('Checking #visible-carousel...');
-    // const visibleItems = $('#visible-carousel .item');
-    // if (visibleItems.length > 0) {
-    //     console.log('#visible-carousel has items:', visibleItems.length);
-    //     var visibleCarousel = bulmaCarousel.attach('#visible-carousel', options);
-    //     visibleCarousel.forEach(carousel => {
-    //         carousel.on('before:show', state => {
-    //             console.log('Visible Carousel state:', state);
-    //         });
-    //     });
-    // } else {
-    //     console.warn('No items found in #visible-carousel. Skipping initialization.');
-    // }
+  // Initialize all div with carousel class
+  var carousels = bulmaCarousel.attach('#results-carousel', options);
+
+  // Loop on each carousel initialized
+  for(var i = 0; i < carousels.length; i++) {
+    // Add listener to  event
+    carousels[i].on('before:show', state => {
+      console.log(state);
+    });
+  }
+
+  // Access to bulmaCarousel instance of an element
+  var element = document.querySelector('#my-element');
+  if (element && element.bulmaCarousel) {
+    // bulmaCarousel instance is available as element.bulmaCarousel
+    element.bulmaCarousel.on('before-show', function(state) {
+      console.log(state);
+    });
+  }
 
     // Prevent carousel from intercepting slider interactions
     $('.slider').on('mousedown touchstart', function(event) {
         event.stopPropagation();
     });
-
-    preloadInterpolationImages();
-
-    $('#interpolation-slider').on('input', function(event) {
-      setInterpolationImage(this.value);
-    });
-    setInterpolationImage(0);
-    $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
-
-    bulmaSlider.attach();
-
+    setupOverlayCarousel();
     loadDemo();
+    setupVirtualPointlight();
 
 })
 
@@ -139,6 +120,7 @@ function pre_load_images(slider_group, sliders) {
   })
 }
 
+
 function loadDemo() {
     const images = document.querySelectorAll('.demo_img');
     const sliderGroups = document.querySelectorAll('.slider_group');
@@ -155,7 +137,7 @@ function loadDemo() {
     pre_load_images(slider_group, sliders);
     sliders.forEach(slider => {
         if (slider.dataset.type === "power"){
-        slider.style.height = 20 + "px";
+        slider.style.height = 25 + "px";
         slider.style.border_color = "white";
         slider.style.background = "transparent";
         slider.style.setProperty('--SliderColor', "white")
@@ -182,32 +164,111 @@ function loadDemo() {
       demo_slider_container.style.left = parseFloat(demo_slider_container.dataset.x)*100 +  '%';
       demo_slider_container.style.top =  parseFloat(demo_slider_container.dataset.y)*100 + '%';
     });
-
-    function imgEnter(event) {
-        demo_slider_containers.forEach(demo_slider_container => {
-        let rect = img.getBoundingClientRect();
-        demo_slider_container.style.display = 'block';
-        demo_slider_container.style.left = parseFloat(demo_slider_container.dataset.x)*100 +  '%';
-        demo_slider_container.style.top =  parseFloat(demo_slider_container.dataset.y)*100 + '%';
-        });
-        img.removeEventListener('mouseenter', imgEnter);
-    }
-
-    function imgExit(event) {
-        let mouse_x = event.clientX;
-        let mouse_y = event.clientY;
-        let rect = img.getBoundingClientRect();
-        if ((mouse_x >= rect.left) && (mouse_x <= rect.left + img.clientWidth) && (mouse_y >= rect.top) && (mouse_y <= rect.top + img.clientHeight))
-        return;
-        demo_slider_containers.forEach(demo_slider_container => {
-        demo_slider_container.style.display = 'none';
-        });
-
-        img.addEventListener('mouseenter', imgEnter);
-    };
-
-    // img.addEventListener('mouseenter', imgEnter);
-    // img.addEventListener('mouseout', imgExit);
-});
-
+  });
 };
+
+// Gemini carousel
+
+function setupOverlayCarousel() {
+  // --- Mouse Event Handlers for Overlay ---
+  const items = document.querySelectorAll('.item');
+  items.forEach(item => {
+      const overlay = item.querySelector('.carousel-overlay');
+      const sourceImage = item.querySelector('img');
+
+      item.addEventListener('mousedown', () => {
+          overlay.classList.add('active');
+          sourceImage.classList.add('inactive');
+      });
+
+      item.addEventListener('touchstart', () => {
+        overlay.classList.add('active');
+        sourceImage.classList.add('inactive');
+      });
+
+      //  Mouseup *anywhere* should hide the overlay (including outside the item).
+      document.addEventListener('mouseup', () => {  // Use document
+          overlay.classList.remove('active');
+          sourceImage.classList.remove('inactive');
+      });
+
+      document.addEventListener('touchend', () => {  // Use document
+        overlay.classList.remove('active');
+        sourceImage.classList.remove('inactive');
+      });
+
+      document.addEventListener('touchcancel', () => {  // Use document
+        overlay.classList.remove('active');
+        sourceImage.classList.remove('inactive');
+      });
+
+
+    // Prevent dragging of images (important for better UX)
+    item.querySelectorAll('img').forEach(img => {
+      img.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+      });
+    });
+  });
+}
+
+
+function setupVirtualPointlight() {
+  const containers = document.getElementsByClassName('virtual-container');
+  for (let container of containers) {
+    const mainImage = container.getElementsByClassName('mainImage')[0];
+    const buttons = container.querySelectorAll('.overlay-button');
+    const sourceDir = container.dataset.sourceDir;
+    const defaultImage = "./static/images/virtual/statue/0.png"
+    
+    for (let button of buttons) {
+      button.style.left = (parseFloat(button.dataset.x) * 100) + '%';
+      button.style.top = (parseFloat(button.dataset.y) * 100) + '%';
+      const imgName = button.dataset.imgName;
+      const imagePath = sourceDir + imgName;
+    
+      //Unified Event Handlers
+      const handleStart = (event) => {
+        mainImage.src = imagePath;
+        console.log(mainImage.src);
+        // Hide other buttons
+        for (let otherButton of buttons) {
+          if (otherButton !== event.currentTarget) { // Check if it's NOT the clicked button
+            // otherButton.classList.add('hidden');
+            otherButton.style.display = 'none';
+          }
+        };
+      };
+    
+      const handleEnd = (event) => {
+        mainImage.src = defaultImage;
+    
+        // Show all buttons again
+        for (let button of buttons) {
+          if (button !== event.currentTarget) {
+            // button.classList.remove('hidden');
+            button.style.display = 'block';
+          }
+        };
+      };
+    
+      // Mouse events (for desktop)
+      button.addEventListener('mousedown', handleStart);
+      button.addEventListener('mouseup', handleEnd);
+      button.addEventListener('mouseleave', handleEnd);
+    
+      // Touch events (for mobile)
+      button.addEventListener('touchstart', handleStart, { passive: true });
+      button.addEventListener('touchend', handleEnd);
+      button.addEventListener('touchcancel', handleEnd);
+    
+      button.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+      });
+    
+      button.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+      });
+    };
+  };
+}
