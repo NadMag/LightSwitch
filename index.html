@@ -312,6 +312,9 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+      <p>
+        <i><sup>*</sup>Results are precomputed for demonstration purposes.</i>
+      </p>
     </div>
   </div>
 </section>
@@ -347,7 +350,7 @@
 
 <!--/Controls -->
 <section class="hero section is-light">
-  <div class="container is-three-fifths">
+  <div class="container is-max-desktop">
     <div class="columns is-centered">
       <!-- Intensity. -->
       <div class="column">
@@ -439,16 +442,14 @@
       </div>
       <!--/ Color. -->
     </div>
-
-
   </div>
-    <div class="container is-three-fifths">
+  <div class="container is-max-desktop">
     <div class="columns is-centered">
       <!-- Virtual Poiintlight. -->
       <div class="column">
           <h2 class="title is-3 centered-text">Virtual Point Light</h2>
           <p>
-            By transfering knowlege from synthetic 3D renders, <i>LightSwitch</i> can insert virtual point lights (with no geometry) into the scene, complementing the use of visible light sources.
+            By transfering knowlege from synthetic 3D renders, <i>LightSwitch</i> can insert virtual point lights (with no geometry) into the scene.
           </p>
           <div id="vrtualCarousel" class="carousel slide" data-bs-theme="light">
             <div class="carousel-inner">
@@ -534,6 +535,17 @@
       <!--/ Color. -->
     </div>
   </div>
+  <div class="container is-max-desktop">
+    <div class="column">
+      <h2 class="centered-text title is-3">Physically Plausible Lighting</h2>
+      <p>
+        <b>Left.</b> The input sequence was created by capturing photographs of a turned-off lamp rotated around the polygon dog.
+        <b>Middle, Right.</b> Inference results of our method and a zoom-in on the dog.
+        Note how self occlusions on the different faces, and dogs shadow match the lamps position and angle.
+      </p>
+      <img src="./static/images/full_dog_stopmotion.gif" alt="Physically Plausible Lighting">
+    </div>
+  </div>
 </section>
 
 
@@ -563,7 +575,7 @@
     </div>
     <div class="columns is-centered">
       <div class="column is-8">
-        <div class="content">
+        <div class="content has-text-justified">
           <p>
             This website is licensed under a <a rel="license"
                                                 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
