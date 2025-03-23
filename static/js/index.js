@@ -216,10 +216,10 @@ function setupOverlayCarousel() {
 function setupVirtualPointlight() {
   const containers = document.getElementsByClassName('virtual-container');
   for (let container of containers) {
-    const mainImage = container.getElementsByClassName('mainImage')[0];
-    const buttons = container.querySelectorAll('.overlay-button');
     const sourceDir = container.dataset.sourceDir;
-    const defaultImage = "./static/images/virtual/statue/0.png"
+    const mainImage = container.getElementsByClassName('mainImage')[0];
+    const defaultImage = mainImage.src;
+    const buttons = container.querySelectorAll('.overlay-button');
     
     for (let button of buttons) {
       button.style.left = (parseFloat(button.dataset.x) * 100) + '%';

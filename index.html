@@ -321,12 +321,23 @@
 <section id="Approach" class="hero section">
   <div class="container is-max-desktop has-text-centered">
     <h2 class="title is-3">Approach</h2>
-    <img src="./static/images/diffusionConditions.png" class="approach-img" alt="Approach">
     <div class="columns is-centered">
-      <div class="column is-three-fifths has-text-justified">
+      <div class="column is-four-fifths has-text-justified">
+        <img src="./static/images/psotProcessing.png" class="approach-img" alt="Approach">
         <p>
-          Controlling light sources in an image is a fundamental aspect of photography that affects the subject, depth separation, colors,  and mood of the image.
-          Existing relighting methods either rely on multiple input views to perform inverse rendering at inference time, or fail to provide explicit control.
+          From a pair of real (raw) photograph pairs, we first isolate the target light change ichange.
+          Bottom row. For synthetic data, we render each light component separately. After light disentanglement both domains undergo light
+          arithmetic to create parameterized sequences of images irelit (α, γ, ct), which are later tone mapped together to SDR.
+        </p>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths has-text-justified">
+        <img src="./static/images/diffusionConditions.png" class="approach-img" alt="Approach">
+        <p>
+          Spatial conditions (input image, target light mask and depth map) are injected to input noise via a learned 1x1 convolution.
+          Light intensity and color control are applied by scaling the intensity and color of the target light mask.
+          Global controls (ambient lightintensity and tone-mapping value) are projected to text embedding dimension and inserted through cross-attention.
         </p>
       </div>
     </div>
@@ -341,7 +352,8 @@
       <!-- Intensity. -->
       <div class="column">
         <!-- <div class="content"> -->
-          <h2 class="title is-3 centered-text">Intensity Control</h2>
+          <h2 class="title is-3 centered-text">Light Intensity</h2>
+          </h2>
           <p>
             <i>Lightswitch</i> gives parametric control over the intensity of light sources.
             <!-- You can adjust the intensity of each light source by moving the sliders. -->
@@ -355,7 +367,7 @@
                     <img class="demo_img"  src="./static/images/kyoto/001.jpg"> <br> <br>
                     <div class="slider_group" data-base="./static/images/kyoto/">
                         <div class="demo_slider_container" data-x=".43" data-y=".10" >
-                            <input type="range" min="1" max="4" value="1" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
+                            <input type="range" min="1" max="4" value="1" class="slider" data-lamp="0" data-type="power" data-multiplier="1" style="accent-color: darkred;">
                         </div>
                     </div>
                   </div>
@@ -436,7 +448,7 @@
       <div class="column">
           <h2 class="title is-3 centered-text">Virtual Point Light</h2>
           <p>
-            Something about virtual point light.
+            By transfering knowlege from synthetic 3D renders, <i>LightSwitch</i> can insert virtual point lights (with no geometry) into the scene, complementing the use of visible light sources.
           </p>
           <div id="vrtualCarousel" class="carousel slide" data-bs-theme="light">
             <div class="carousel-inner">
@@ -450,12 +462,21 @@
                 </div>
               </div>
               <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
-                <div class="virtual-container" data-source-dir="./static/images/virtual/statue/">
-                  <img class="mainImage" src="./static/images/virtual/statue/0.png" alt="Original Image">  <!-- Initial image -->
-                  <button class="overlay-button" data-img-name="1.png" data-x="0.355" data-y="0.607"></button>
-                  <button class="overlay-button" data-img-name="2.png" data-x="0.592" data-y="0.398"></button>
-                  <button class="overlay-button" data-img-name="3.png" data-x="0.868" data-y="0.162"></button>
-                  <button class="overlay-button" data-img-name="4.png" data-x="0.725" data-y="0.925"></button>
+                <div class="virtual-container" data-source-dir="./static/images/virtual/chess/">
+                  <img class="mainImage" src="./static/images/virtual/chess/chess_cond.png" alt="Original Image">  <!-- Initial image -->
+                  <button class="overlay-button" data-img-name="1.png" data-x="0.15" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="2.png" data-x="0.35" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="3.png" data-x="0.60" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="4.png" data-x="0.85" data-y="0.3"></button>
+                </div>
+              </div>
+              <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
+                <div class="virtual-container" data-source-dir="./static/images/virtual/otagi/">
+                  <img class="mainImage" src="./static/images/virtual/otagi/otagi_cond.png" alt="Original Image">  <!-- Initial image -->
+                  <button class="overlay-button" data-img-name="1.png" data-x="0.15" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="2.png" data-x="0.35" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="3.png" data-x="0.60" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="4.png" data-x="0.85" data-y="0.3"></button>
                 </div>
               </div>
             </div>
@@ -473,7 +494,7 @@
 
       <!-- Color. -->
       <div class="column">
-        <h2 class="centered-text title is-3">Color Control</h2>
+        <h2 class="centered-text title is-3">Ambient Light</h2>
         <div class="columns is-centered">
           <div class="column">
             <p>
