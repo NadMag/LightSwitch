@@ -179,6 +179,12 @@
               <img src="./static/images/example_carousel/openImages/hotel_couch/off.jpg" alt="result">
           </div>
         </div>
+        <div class="item">
+          <img src="./static/images/example_carousel/india_dining/original.jpg" alt="original">
+          <div class="carousel-overlay">
+              <img src="./static/images/example_carousel/india_dining/res_on.jpg" alt="result">
+          </div>
+        </div>
       </div>
       <div class="note">
           <svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="TouchAppIcon">
@@ -242,7 +248,7 @@
       <h2 class="title is-3">Interactive Demo</h2>
       <div class="container is-three-fifths has-text-justified" style="width: 60%;">
         <p>
-          <i>LightSwitch</i> gives a rich set of lighting controls that can be used sequentially to create complex lighting effects.
+          <i>LightSwitch</i> enables a rich set of lighting controls that can be used sequentially to create complex lighting effects.
           You can adjust the intensity and color of each light source by moving the sliders.
         </p>
       </div>
@@ -382,7 +388,19 @@
                     <img class="demo_img"  src="./static/images/dark_living_room/000.jpg"> <br> <br>
                     <div class="slider_group" data-base="./static/images/dark_living_room/">
                         <div class="demo_slider_container" data-x=".43" data-y=".10" >
-                            <input type="range" min="0" max="3" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
+                            <input type="range" min="0" max="9" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
+                <div class = "inner-div">
+                  <div class = "centered-div">
+                    <img class="demo_img"  src="./static/images/wallace/wallace_light_orange_010.jpg"> <br> <br>
+                    <div class="slider_group" data-base="./static/images/wallace/wallace_light_orange_">
+                        <div class="demo_slider_container" data-x=".745" data-y=".4">
+                            <input type="range" min="0" max="19" value="10" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
                         </div>
                     </div>
                   </div>
@@ -412,7 +430,7 @@
             </p>
             <div id="colorCarousel" class="carousel slide" data-bs-theme="light">
               <div class="carousel-inner">
-                <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
+                <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                   <div class = "inner-div">
                     <div class = "centered-div">
                       <img class="demo_img"  src="./static/images/example_bedroom_openimages_two_lamps/6_6.jpg"> <br> <br>
@@ -422,6 +440,21 @@
                           </div>
                           <div class="demo_slider_container" data-x=".65" data-y=".31" >
                               <input type="range" min="0" max="6" value="6" class="slider" data-lamp="1" data-type="color">
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo_carousel_item content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
+                  <div class = "inner-div">
+                    <div class = "centered-div">
+                      <img class="demo_img"  src="./static/images/exmaple_chibi/000.jpg"> <br> <br>
+                      <div class="slider_group" data-base="./static/images/exmaple_chibi/">
+                          <div class="demo_slider_container" data-x=".167" data-y=".4" >
+                              <input type="range" min="0" max="10" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="12">
+                          </div>
+                          <div class="demo_slider_container" data-x=".182" data-y=".38" >
+                              <input type="range" min="0" max="6" value="6" class="slider" data-lamp="0" data-type="color" data-multiplier="1">
                           </div>
                       </div>
                     </div>
@@ -543,7 +576,9 @@
         <b>Middle, Right.</b> Inference results of our method and a zoom-in on the dog.
         Note how self occlusions on the different faces, and dogs shadow match the lamps position and angle.
       </p>
-      <img src="./static/images/full_dog_stopmotion.gif" alt="Physically Plausible Lighting">
+      <video id="replay-video" controls loop autoplay="autoplay" muted="" preload="" playsinline="" width="75%">
+        <source src="./static/images/full_dog_stopmotion.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>

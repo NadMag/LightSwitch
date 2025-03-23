@@ -167,7 +167,6 @@ function loadDemo() {
   });
 };
 
-// Gemini carousel
 
 function setupOverlayCarousel() {
   // --- Mouse Event Handlers for Overlay ---
@@ -220,12 +219,16 @@ function setupVirtualPointlight() {
     const mainImage = container.getElementsByClassName('mainImage')[0];
     const defaultImage = mainImage.src;
     const buttons = container.querySelectorAll('.overlay-button');
-    
+    const images = []
+
     for (let button of buttons) {
       button.style.left = (parseFloat(button.dataset.x) * 100) + '%';
       button.style.top = (parseFloat(button.dataset.y) * 100) + '%';
       const imgName = button.dataset.imgName;
       const imagePath = sourceDir + imgName;
+      const img = new Image();
+      img.src = imagePath;
+      images.push(img);
     
       //Unified Event Handlers
       const handleStart = (event) => {
