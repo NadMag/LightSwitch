@@ -393,3 +393,8 @@ body {
 .hidden {
   display: none; /* Hide the element */
 }
+
+.approach-img {
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
