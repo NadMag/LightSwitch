@@ -172,6 +172,12 @@ body {
   max-height: 90vh;
 }
 
+.vir_demo_img {
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+  max-height: 90vh;
+}
 
 .demo_slider_container {
   min-width: 75px;
@@ -183,8 +189,26 @@ body {
   position: absolute;
 }
 
+.vir_demo_slider_container {
+  min-width: 75px;
+  width: 10%; /* Adjust as needed */
+  align-items: center;
+  text-align: center;
+  /*height: 60px; !* Adjust as needed *!*/
+  position: absolute;
+}
+
 
 .slider_group {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  max-height: 90vh;
+}
+
+.vir_slider_group {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -212,6 +236,13 @@ body {
   accent-color: var(--SliderColor);
 }
 
+.vir_demo_slider_container>input {
+  width: 0px;
+  border: 0px;
+  transition: all .5s ease; /* Smooth transition */
+  accent-color: yellow;
+}
+
 .demo_slider_container:hover>input{
   width: 100%;
   opacity: 1; /* Show the slider on hover */
@@ -220,21 +251,49 @@ body {
   accent-color: var(--SliderColor);
 }
 
+.vir_demo_slider_container:hover>input{
+  width: 100%;
+  opacity: 1; /* Show the slider on hover */
+  border: 2px solid white;
+  transition: all .5s ease; /* Smooth transition */
+  accent-color: yellow;
+}
+
 .demo_slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 17.5px;
   background: var(--SliderColor);
   cursor: pointer;
   /*border: 4px solid red; !* White border *!*/
   transition: all .5s ease; /* Smooth transition */
 }
+
+.vir_demo_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 17.5px;
+  background: var(--SliderColor);
+  cursor: pointer;
+  /*border: 4px solid red; !* White border *!*/
+  transition: all .5s ease; /* Smooth transition */
+}
+
 .demo_slider_container:hover .demo_slider::-webkit-slider-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 12.5px;
+  /*border: 4px solid white; !* White border *!*/
+}
+
+.vir_demo_slider_container:hover .vir_demo_slider::-webkit-slider-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 12.5px;
   /*border: 4px solid white; !* White border *!*/
 }
 
@@ -370,6 +429,7 @@ body {
 
 .overlay-button {
   position: absolute;
+  z-index: 10;
   width: 4%;
   height: 4%;
   border-radius: 50%;

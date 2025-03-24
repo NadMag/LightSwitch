@@ -225,20 +225,42 @@ function setupVirtualPointlight() {
     const defaultImage = mainImage.src;
     const buttons = container.querySelectorAll('.overlay-button');
     const images = []
+    const sliders = container.getElementsByClassName('vir_demo_slider');
+    if (sliders.length > 0) {
+      sliders[0].addEventListener("input", function () {
+        mainImage.src = sourceDir + String(sliders[0].value).padStart(3, '0') + "_" + "cond.png";
+      });
+    }
 
     for (let button of buttons) {
       button.style.left = (parseFloat(button.dataset.x) * 100) + '%';
       button.style.top = (parseFloat(button.dataset.y) * 100) + '%';
       const imgName = button.dataset.imgName;
       const imagePath = sourceDir + imgName;
-      const img = new Image();
-      img.src = imagePath;
-      images.push(img);
+      if (sliders.length > 0) {
+        for (let value in [0, 1, 2]) {
+          const curName = String(value).padStart(3, '0') + "_" + button.dataset.imgName;
+          const img = new Image();
+          img.src = sourceDir + curName;
+          images.push(img);
+        }
+      }
+      else {
+        const img = new Image();
+        img.src = imagePath;
+        images.push(img);
+      }
     
       //Unified Event Handlers
       const handleStart = (event) => {
-        mainImage.src = imagePath;
-        console.log(mainImage.src);
+        if (sliders.length > 0) {
+          let sliderValue = sliders[0].value;
+          const curName = String(sliderValue).padStart(3, '0') + "_" + button.dataset.imgName;
+          mainImage.src = sourceDir + curName;
+        }
+        else {
+          mainImage.src = imagePath;
+        }
         // Hide other buttons
         for (let otherButton of buttons) {
           if (otherButton !== event.currentTarget) { // Check if it's NOT the clicked button
@@ -249,8 +271,13 @@ function setupVirtualPointlight() {
       };
     
       const handleEnd = (event) => {
-        mainImage.src = defaultImage;
-    
+        if (sliders.length > 0) {
+          let sliderValue = sliders[0].value;
+          const curName = String(sliderValue).padStart(3, '0') + "_" + "cond.png";
+          mainImage.src = sourceDir + curName;
+        } else {
+          mainImage.src = defaultImage;
+        }
         // Show all buttons again
         for (let button of buttons) {
           if (button !== event.currentTarget) {
