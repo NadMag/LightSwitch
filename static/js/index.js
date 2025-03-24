@@ -164,6 +164,11 @@ function loadDemo() {
       demo_slider_container.style.left = parseFloat(demo_slider_container.dataset.x)*100 +  '%';
       demo_slider_container.style.top =  parseFloat(demo_slider_container.dataset.y)*100 + '%';
     });
+    const demoOverlay = document.querySelector('.demo-overlay');
+
+    demoOverlay.addEventListener('click', () => {
+      demoOverlay.style.display = 'none';
+    });
   });
 };
 

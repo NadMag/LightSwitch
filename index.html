@@ -257,6 +257,14 @@
           <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
             <div class = "inner-div">
               <div class = "centered-div">
+                <div class="demo-overlay">
+                  <svg class="touch-icon svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="TouchAppIcon" style="left: 80.1%; top: 18.2%;">
+                    <path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74m9.84 4.63-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74c-3.6-.76-3.54-.75-3.67-.75-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38"></path>
+                  </svg>
+                  <svg class="touch-icon svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="TouchAppIcon" style="left: 25.447%; top: 50.271%;">
+                    <path d="M9 11.24V7.5C9 6.12 10.12 5 11.5 5S14 6.12 14 7.5v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74m9.84 4.63-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74c-3.6-.76-3.54-.75-3.67-.75-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38"></path>
+                  </svg>
+                </div>
                 <img class="demo_img"  src="./static/images/example_two_lamps/000_000.jpg">
                 <div class="slider_group" data-base="./static/images/example_two_lamps/">
                     <div class="demo_slider_container" data-x=".225" data-y=".50" >
@@ -318,9 +326,9 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-      <p>
+      <!-- <p>
         <i><sup>*</sup>Results are precomputed for demonstration purposes.</i>
-      </p>
+      </p> -->
     </div>
   </div>
 </section>
@@ -388,7 +396,7 @@
                     <img class="demo_img"  src="./static/images/dark_living_room/000.jpg"> <br> <br>
                     <div class="slider_group" data-base="./static/images/dark_living_room/">
                         <div class="demo_slider_container" data-x=".43" data-y=".10" >
-                            <input type="range" min="0" max="9" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
+                            <input type="range" min="0" max="8" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
                         </div>
                     </div>
                   </div>
@@ -526,7 +534,7 @@
       </div>
       <!--/ Intensity. -->
 
-      <!-- Color. -->
+      <!-- Ambient. -->
       <div class="column">
         <h2 class="centered-text title is-3">Ambient Light</h2>
         <div class="columns is-centered">
@@ -535,29 +543,26 @@
               As a byproduct of our method, we can also solve the matting problem by ignoring
               samples that fall outside of a bounding box during rendering.
             </p>
-            <div id="colorCarousel" class="carousel slide" data-bs-theme="light">
+            <div id="ambientCarousel" class="carousel slide" data-bs-theme="light">
               <div class="carousel-inner">
                 <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                   <div class = "inner-div">
                     <div class = "centered-div">
-                      <img class="demo_img"  src="./static/images/example_bedroom_openimages_two_lamps/6_6.jpg"> <br> <br>
-                      <div class="slider_group" data-base="./static/images/example_bedroom_openimages_two_lamps/">
-                          <div class="demo_slider_container" data-x=".09" data-y=".42" >
-                              <input type="range" min="0" max="6" value="6" class="slider" data-lamp="0" data-type="color">
-                          </div>
-                          <div class="demo_slider_container" data-x=".65" data-y=".31" >
-                              <input type="range" min="0" max="6" value="6" class="slider" data-lamp="1" data-type="color">
-                          </div>
+                      <img class="demo_img"  src="./static/images/env/temple/007.jpg"> <br> <br>
+                      <div class="slider_group" data-base="./static/images/env/temple/">
+                        <div class="demo_slider_container" data-x=".445" data-y=".10" >
+                          <input type="range" min="0" max="7" value="7" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <button class="carousel-control-prev my_carousel-control" type="button" data-bs-target="#colorCarousel" data-bs-slide="prev" style="height:40px; width:40px; top:50%; transform: translateY(-50%)">
+              <button class="carousel-control-prev my_carousel-control" type="button" data-bs-target="#ambientCarousel" data-bs-slide="prev" style="height:40px; width:40px; top:50%; transform: translateY(-50%)">
                 <span class="carousel-control-prev-icon white_carousel-control" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next my_carousel-control" type="button" data-bs-target="#colorCarousel" data-bs-slide="next" style="height:40px; width:40px; top:50%; transform: translateY(-50%)">
+              <button class="carousel-control-next my_carousel-control" type="button" data-bs-target="#ambientCarousel" data-bs-slide="next" style="height:40px; width:40px; top:50%; transform: translateY(-50%)">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
@@ -576,6 +581,9 @@
         <b>Middle, Right.</b> Inference results of our method and a zoom-in on the dog.
         Note how self occlusions on the different faces, and dogs shadow match the lamps position and angle.
       </p>
+        <div class="has-text-centered header-container">
+          <h5>Input</h5> <h5>Result</h5> <h5>Zoom-In</h5>
+        </div>
       <video id="replay-video" controls loop autoplay="autoplay" muted="" preload="" playsinline="" width="75%">
         <source src="./static/images/full_dog_stopmotion.mp4" type="video/mp4">
       </video>
