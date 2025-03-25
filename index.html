@@ -139,50 +139,42 @@
           <!--Main Image-->
            <img src="./static/images/example_carousel/sabers_duel/sabers_duel_off.jpg" alt="Image 1">
           <!--Image in Overlay-->
-           <div class="carousel-overlay">
-               <img src="./static/images/example_carousel/sabers_duel/sabers_duel_on.jpg" alt="Overlay 1">
+           <div id="nadav" class="carousel-overlay" data-src="./static/images/example_carousel/sabers_duel/sabers_duel_on.jpg" alt="Overlay 1">
            </div>
         </div>
         <div class="item">
           <img src="./static/images/example_carousel/nightstand/original_off.jpg" alt="Image 3">
-          <div class="carousel-overlay">
-              <img src="./static/images/example_carousel/nightstand/res_on.jpg" alt="Overlay 3">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/nightstand/res_on.jpg">
           </div>
         </div>
         <div class="item">
               <img src="./static/images/example_carousel/seaside/sea_side_input.jpg" alt="Image 2">
-              <div class="carousel-overlay">
-                  <img src="./static/images/example_carousel/seaside/sea_side_relit.jpg" alt="Overlay 2">
+              <div class="carousel-overlay" data-src="./static/images/example_carousel/seaside/sea_side_relit.jpg">
               </div>
         </div>
         <div class="item">
           <img src="./static/images/example_carousel/stairs_env/original.jpg" alt="Image 3">
-          <div class="carousel-overlay">
-              <img src="./static/images/example_carousel/stairs_env/res.jpg" alt="Overlay 3">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/stairs_env/res.jpg">
           </div>
         </div>
         <div class="item">
           <img src="./static/images/example_carousel/openImages/grandma/original.jpg" alt="original">
-          <div class="carousel-overlay">
-              <img src="./static/images/example_carousel/openImages/grandma/res.jpg" alt="result">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/openImages/grandma/res.jpg">
           </div>
         </div>
         <div class="item">
           <img src="./static/images/example_carousel/openImages/illuminet_ex/original.jpg" alt="original">
-          <div class="carousel-overlay">
-              <img src="./static/images/example_carousel/openImages/illuminet_ex/res_on.jpg" alt="result">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/openImages/illuminet_ex/res_on.jpg">
           </div>
         </div>
         <div class="item">
           <img src="./static/images/example_carousel/openImages/hotel_couch/original.jpg" alt="original">
-          <div class="carousel-overlay">
-              <img src="./static/images/example_carousel/openImages/hotel_couch/off.jpg" alt="result">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/openImages/hotel_couch/off.jpg">
           </div>
         </div>
         <div class="item">
           <img src="./static/images/example_carousel/india_dining/original.jpg" alt="original">
-          <div class="carousel-overlay">
-              <img src="./static/images/example_carousel/india_dining/res_on.jpg" alt="result">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/india_dining/res_on.jpg">
           </div>
         </div>
       </div>
@@ -299,10 +291,10 @@
             <div class = "inner-div">
               <div class = "centered-div">
                 <div class="virtual-container" data-source-dir="./static/images/carnaval/">
-                  <img class="mainImage vir_demo_img" src="./static/images/carnaval/000_cond.png" alt="Original Image">
-                  <button class="overlay-button" data-img-name="left.png" data-x="0.13" data-y="0.27"></button>
-                  <button class="overlay-button" data-img-name="face.png" data-x="0.46" data-y="0.48"></button>
-                  <button class="overlay-button" data-img-name="right.png" data-x="0.93" data-y="0.13"></button>
+                  <img class="mainImage vir_demo_img" src="./static/images/carnaval/000_cond.jpg" alt="Original Image">
+                  <button class="overlay-button" data-img-name="left.jpg" data-x="0.13" data-y="0.27"></button>
+                  <button class="overlay-button" data-img-name="face.jpg" data-x="0.46" data-y="0.48"></button>
+                  <button class="overlay-button" data-img-name="right.jpg" data-x="0.93" data-y="0.13"></button>
                   <div class="vir_slider_group" data-base="./static/images/carnaval/">
                     <div class="vir_demo_slider_container" data-x=".45" data-y=".2" style="display: block; left: 45%; top: 10%; width: 9%">
                       <input type="range" min="0" max="2" value="0" class="slider vir_demo_slider" data-lamp="1" data-type="power" data-multiplier="1">
@@ -351,7 +343,7 @@
     <h2 class="title is-3">Approach</h2>
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-justified">
-        <img src="./static/images/psotProcessing.png" class="approach-img" alt="Approach">
+        <img src="./static/images/psotProcessing.png" class="approach-img" loading="lazy" alt="Approach">
         <p>
           From a pair of real (raw) photograph pairs, we first isolate the target light change ichange.
           Bottom row. For synthetic data, we render each light component separately. After light disentanglement both domains undergo light
@@ -361,7 +353,7 @@
     </div>
     <div class="columns is-centered">
       <div class="column is-four-fifths has-text-justified">
-        <img src="./static/images/diffusionConditions.png" class="approach-img" alt="Approach">
+        <img src="./static/images/diffusionConditions.png" loading="lazy" class="approach-img" alt="Approach">
         <p>
           Spatial conditions (input image, target light mask and depth map) are injected to input noise via a learned 1x1 convolution.
           Light intensity and color control are applied by scaling the intensity and color of the target light mask.
@@ -392,7 +384,7 @@
               <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class = "inner-div">
                   <div class = "centered-div">
-                    <img class="demo_img"  src="./static/images/kyoto/001.jpg"> <br> <br>
+                    <img class="demo_img"  src="./static/images/kyoto/001.jpg" loading="lazy"> <br> <br>
                     <div class="slider_group" data-base="./static/images/kyoto/">
                         <div class="demo_slider_container" data-x=".43" data-y=".10" >
                             <input type="range" min="1" max="4" value="1" class="slider" data-lamp="0" data-type="power" data-multiplier="1" style="accent-color: darkred;">
@@ -404,7 +396,7 @@
               <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class = "inner-div">
                   <div class = "centered-div">
-                    <img class="demo_img"  src="./static/images/dark_living_room/000.jpg"> <br> <br>
+                    <img class="demo_img"  src="./static/images/dark_living_room/000.jpg" loading="lazy"> <br> <br>
                     <div class="slider_group" data-base="./static/images/dark_living_room/">
                         <div class="demo_slider_container" data-x=".43" data-y=".10" >
                             <input type="range" min="0" max="4" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="2">
@@ -416,7 +408,7 @@
               <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class = "inner-div">
                   <div class = "centered-div">
-                    <img class="demo_img"  src="./static/images/wallace/wallace_light_orange_010.jpg"> <br> <br>
+                    <img class="demo_img"  src="./static/images/wallace/wallace_light_orange_010.jpg" loading="lazy"> <br> <br>
                     <div class="slider_group" data-base="./static/images/wallace/wallace_light_orange_">
                         <div class="demo_slider_container" data-x=".745" data-y=".4">
                             <input type="range" min="0" max="10" value="5" class="slider" data-lamp="0" data-type="power" data-multiplier="2">
@@ -452,7 +444,7 @@
                 <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                   <div class = "inner-div">
                     <div class = "centered-div">
-                      <img class="demo_img"  src="./static/images/example_bedroom_openimages_two_lamps/6_6.jpg"> <br> <br>
+                      <img class="demo_img"  src="./static/images/example_bedroom_openimages_two_lamps/6_6.jpg" loading="lazy"> <br> <br>
                       <div class="slider_group" data-base="./static/images/example_bedroom_openimages_two_lamps/">
                           <div class="demo_slider_container" data-x=".09" data-y=".42" >
                               <input type="range" min="0" max="6" value="6" class="slider" data-lamp="0" data-type="color">
@@ -467,7 +459,7 @@
                 <div class="demo_carousel_item content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                   <div class = "inner-div">
                     <div class = "centered-div">
-                      <img class="demo_img"  src="./static/images/exmaple_chibi/000.jpg"> <br> <br>
+                      <img class="demo_img"  src="./static/images/exmaple_chibi/000.jpg" loading="lazy"> <br> <br>
                       <div class="slider_group" data-base="./static/images/exmaple_chibi/">
                           <div class="demo_slider_container" data-x=".167" data-y=".42" >
                               <input type="range" min="0" max="5" value="0" class="slider" data-lamp="0" data-type="power" data-multiplier="24">
@@ -507,29 +499,29 @@
             <div class="carousel-inner">
               <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class="virtual-container" data-source-dir="./static/images/virtual/statue/">
-                  <img class="mainImage" src="./static/images/virtual/statue/0.png" alt="Original Image">  <!-- Initial image -->
-                  <button class="overlay-button" data-img-name="1.png" data-x="0.355" data-y="0.607"></button>
-                  <button class="overlay-button" data-img-name="2.png" data-x="0.592" data-y="0.398"></button>
-                  <button class="overlay-button" data-img-name="3.png" data-x="0.868" data-y="0.162"></button>
-                  <button class="overlay-button" data-img-name="4.png" data-x="0.725" data-y="0.925"></button>
+                  <img class="mainImage demo_img" src="./static/images/virtual/statue/0.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
+                  <button class="overlay-button" data-img-name="1.jpg" data-x="0.355" data-y="0.607"></button>
+                  <button class="overlay-button" data-img-name="2.jpg" data-x="0.592" data-y="0.398"></button>
+                  <button class="overlay-button" data-img-name="3.jpg" data-x="0.868" data-y="0.162"></button>
+                  <button class="overlay-button" data-img-name="4.jpg" data-x="0.725" data-y="0.925"></button>
                 </div>
               </div>
               <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class="virtual-container" data-source-dir="./static/images/virtual/chess/">
-                  <img class="mainImage" src="./static/images/virtual/chess/chess_cond.png" alt="Original Image">  <!-- Initial image -->
-                  <button class="overlay-button" data-img-name="1.png" data-x="0.15" data-y="0.3"></button>
-                  <button class="overlay-button" data-img-name="2.png" data-x="0.35" data-y="0.3"></button>
-                  <button class="overlay-button" data-img-name="3.png" data-x="0.60" data-y="0.3"></button>
-                  <button class="overlay-button" data-img-name="4.png" data-x="0.85" data-y="0.3"></button>
+                  <img class="mainImage demo_img" src="./static/images/virtual/chess/chess_cond.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
+                  <button class="overlay-button" data-img-name="1.jpg" data-x="0.15" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="2.jpg" data-x="0.35" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="3.jpg" data-x="0.60" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="4.jpg" data-x="0.85" data-y="0.3"></button>
                 </div>
               </div>
               <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class="virtual-container" data-source-dir="./static/images/virtual/otagi/">
-                  <img class="mainImage" src="./static/images/virtual/otagi/otagi_cond.png" alt="Original Image">  <!-- Initial image -->
-                  <button class="overlay-button" data-img-name="1.png" data-x="0.15" data-y="0.3"></button>
-                  <button class="overlay-button" data-img-name="2.png" data-x="0.35" data-y="0.3"></button>
-                  <button class="overlay-button" data-img-name="3.png" data-x="0.60" data-y="0.3"></button>
-                  <button class="overlay-button" data-img-name="4.png" data-x="0.85" data-y="0.3"></button>
+                  <img class="mainImage demo_img" src="./static/images/virtual/otagi/otagi_cond.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
+                  <button class="overlay-button" data-img-name="1.jpg" data-x="0.15" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="2.jpg" data-x="0.35" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="3.jpg" data-x="0.60" data-y="0.3"></button>
+                  <button class="overlay-button" data-img-name="4.jpg" data-x="0.85" data-y="0.3"></button>
                 </div>
               </div>
             </div>
@@ -559,7 +551,7 @@
                 <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                   <div class = "inner-div">
                     <div class = "centered-div">
-                      <img class="demo_img"  src="./static/images/env/temple/007.jpg"> <br> <br>
+                      <img class="demo_img"  src="./static/images/env/temple/007.jpg" loading="lazy"> <br> <br>
                       <div class="slider_group" data-base="./static/images/env/temple/">
                         <div class="demo_slider_container" data-x=".445" data-y=".10" >
                           <input type="range" min="0" max="7" value="7" class="slider" data-lamp="0" data-type="power" data-multiplier="1">

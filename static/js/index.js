@@ -1,18 +1,36 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-$(document).ready(async function() {
-    setupOverlayCarousel();
-    let i = 0;
-    const loadDemoGenerator = loadDemo();
-    // const _ = loadDemoGenerator.next();
-    //console.log('Loaded demo 0');
-    for await (const _ of loadDemoGenerator) {
-      console.log('Loaded demo ' + i);
-      i++;
+
+// $(document).ready(function() {
+//     setupOverlayCarousel();
+//     let i = 0;
+//     const loadDemoGenerator = loadDemo();
+//     // const _ = loadDemoGenerator.next();
+//     //console.log('Loaded demo 0');
+//     for await (const _ of loadDemoGenerator) {
+//       console.log('Loaded demo ' + i);
+//       i++;
+//     }
+//     setupVirtualPointlight();
+//     console.log('Loaded virtual pointlight');
+// })
+
+document.addEventListener("DOMContentLoaded", async function(event) { 
+  await setupOverlayCarousel();
+  let i = 0;
+  const loadDemoGenerator = loadDemo();
+  // const _ = loadDemoGenerator.next();
+  //console.log('Loaded demo 0');
+  for await (const _ of loadDemoGenerator) {
+    console.log('Loaded demo ' + i);
+    i++;
+    if (i === 1) {
+      await setupVirtualPointlight();
     }
-    setupVirtualPointlight();
-    console.log('Loaded virtual pointlight');
-})
+  }
+  // setupVirtualPointlight();
+  console.log('Loaded virtual pointlight');
+});
 
 // Demo
 const demo_colors = ["#f06", "#f4d", "#94f", "#09f", "#7c3", "#fe0", "#fb0"]
@@ -68,7 +86,7 @@ function pre_load_images(slider_group, sliders) {
   
     for (let values of values_prod) {
     let img = new Image();
-    img.loading = "lazy";
+    // img.loading = "lazy";
     img.style.display = "none";
     document.body.appendChild(img);
     img.src = getImagePath(slider_group, sliders, values);
@@ -159,7 +177,7 @@ async function setupOverlayCarousel() {
   items.forEach(item => {
       const overlay = item.querySelector('.carousel-overlay');
       const sourceImage = item.querySelector('img');
-
+      loadOverlay(overlay);
       item.addEventListener('mousedown', () => {
           overlay.classList.add('active');
           sourceImage.classList.add('inactive');
@@ -198,20 +216,27 @@ async function setupOverlayCarousel() {
 
 
 async function setupVirtualPointlight() {
+  const images = [];
   const containers = document.getElementsByClassName('virtual-container');
   for (let container of containers) {
     const sourceDir = container.dataset.sourceDir;
     const mainImage = container.getElementsByClassName('mainImage')[0];
     const defaultImage = mainImage.src;
     const buttons = container.querySelectorAll('.overlay-button');
-    const images = []
     const sliders = container.getElementsByClassName('vir_demo_slider');
     if (sliders.length > 0) {
       sliders[0].addEventListener("input", function () {
-        mainImage.src = sourceDir + String(sliders[0].value).padStart(3, '0') + "_" + "cond.png";
+        mainImage.src = sourceDir + String(sliders[0].value).padStart(3, '0') + "_" + "cond.jpg";
       });
+      for (let value in [0, 1, 2]) {
+        const img = new Image();
+        // img.loading = "lazy";
+        // images.push(img);
+        img.style.display = "none";
+        document.body.appendChild(img);
+        img.src = sourceDir + String(value).padStart(3, '0') + "_" + "cond.jpg";
+      };
     }
-
     for (let button of buttons) {
       button.style.left = (parseFloat(button.dataset.x) * 100) + '%';
       button.style.top = (parseFloat(button.dataset.y) * 100) + '%';
@@ -221,16 +246,21 @@ async function setupVirtualPointlight() {
         for (let value in [0, 1, 2]) {
           const curName = String(value).padStart(3, '0') + "_" + button.dataset.imgName;
           const img = new Image();
-          img.loading = "lazy";
+          // img.loading = "lazy";
+          // images.push(img);
+          img.style.display = "none";
+          document.body.appendChild(img);
           img.src = sourceDir + curName;
-          images.push(img);
         }
       }
       else {
         const img = new Image();
-        img.loading = "lazy";
+        // img.loading = "lazy";
+        // images.push(img);
+        img.style.display = "none";
+        document.body.appendChild(img);
         img.src = imagePath;
-        images.push(img);
+        console.log("Pushed " + imagePath);
       }
     
       //Unified Event Handlers
@@ -287,5 +317,19 @@ async function setupVirtualPointlight() {
         event.preventDefault();
       });
     };
+  };
+}
+
+async function loadOverlay(overlayDiv) {
+  const img = new Image();
+  img.src = overlayDiv.dataset.src;
+  overlayDiv.appendChild(img);
+}
+
+async function loadOverlayCarousel() {
+  // const overlays = document.getElementsByClassName('carousel-overlay');
+  overlays = [document.getElementById('nadav')];
+  for (let overlay of overlays) {
+    loadOverlay(overlay);
   };
 }
