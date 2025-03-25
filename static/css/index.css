@@ -308,7 +308,7 @@ body {
 
 .my_carousel-control {
   width: 60px;
-  height: 60px;
+  height: 30%;
   top: 50%;
   transform: translateY(-50%);
 }
