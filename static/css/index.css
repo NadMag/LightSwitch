@@ -392,8 +392,10 @@ body {
   justify-content: center; 
   align-items: center;
   position: relative;
-  width: 30%;
-  left: 35%;
+  width: fit-content;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   margin-top: 16px; 
   font-size: 1rem; 
   line-height: 1.5; 
