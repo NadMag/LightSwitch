@@ -1,63 +1,17 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-var INTERP_BASE = "./static/interpolation/stacked";
-var NUM_INTERP_FRAMES = 240;
-
-var interp_images = [];
-function preloadInterpolationImages() {
-  for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
-    var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
-    interp_images[i] = new Image();
-    interp_images[i].src = path;
-  }
-}
-
-function setInterpolationImage(i) {
-  var image = interp_images[i];
-  image.ondragstart = function() { return false; };
-  image.oncontextmenu = function() { return false; };
-  $('#interpolation-image-wrapper').empty().append(image);
-}
-
-
-$(document).ready(function() {
-  var options = {
-    slidesToScroll: 1,
-    slidesToShow: 3,
-    loop: true,
-    infinite: true,
-    autoplay: false,
-    autoplaySpeed: 3000,
-  }
-
-  // Initialize all div with carousel class
-  var carousels = bulmaCarousel.attach('#results-carousel', options);
-
-  // Loop on each carousel initialized
-  for(var i = 0; i < carousels.length; i++) {
-    // Add listener to  event
-    carousels[i].on('before:show', state => {
-      console.log(state);
-    });
-  }
-
-  // Access to bulmaCarousel instance of an element
-  var element = document.querySelector('#my-element');
-  if (element && element.bulmaCarousel) {
-    // bulmaCarousel instance is available as element.bulmaCarousel
-    element.bulmaCarousel.on('before-show', function(state) {
-      console.log(state);
-    });
-  }
-
-    // Prevent carousel from intercepting slider interactions
-    $('.slider').on('mousedown touchstart', function(event) {
-        event.stopPropagation();
-    });
+$(document).ready(async function() {
     setupOverlayCarousel();
-    loadDemo();
+    let i = 0;
+    const loadDemoGenerator = loadDemo();
+    // const _ = loadDemoGenerator.next();
+    //console.log('Loaded demo 0');
+    for await (const _ of loadDemoGenerator) {
+      console.log('Loaded demo ' + i);
+      i++;
+    }
     setupVirtualPointlight();
-
+    console.log('Loaded virtual pointlight');
 })
 
 // Demo
@@ -111,69 +65,95 @@ function pre_load_images(slider_group, sliders) {
     values_prod = all_values[0].map(value => [value]);
   else
     values_prod = cartesian(...all_values);
-  values_prod.forEach(values =>
-  {
+  
+    for (let values of values_prod) {
     let img = new Image();
+    img.loading = "lazy";
     img.style.display = "none";
     document.body.appendChild(img);
     img.src = getImagePath(slider_group, sliders, values);
-  })
+  }
 }
 
-
-function loadDemo() {
-    const images = document.querySelectorAll('.demo_img');
-    const sliderGroups = document.querySelectorAll('.slider_group');
-    sliderGroups.forEach((slider_group, group_index) => {
-
-    let img = images[group_index];
-    let demo_slider_containers_raw = slider_group.children;
-    let sliders = [];
-    let demo_slider_containers = []
-    for (let i = 0; i < demo_slider_containers_raw.length; ++i){
-        sliders.push(demo_slider_containers_raw[i].children[0]);
-        demo_slider_containers.push(demo_slider_containers_raw[i]);
+async function loadSingleDemoExample(slider_group, img) {
+  let demo_slider_containers_raw = slider_group.children;
+  let sliders = [];
+  let demo_slider_containers = []
+  for (let i = 0; i < demo_slider_containers_raw.length; ++i){
+      sliders.push(demo_slider_containers_raw[i].children[0]);
+      demo_slider_containers.push(demo_slider_containers_raw[i]);
+  }
+  pre_load_images(slider_group, sliders);
+  for (let slider of sliders) {
+    if (slider.dataset.type === "power"){
+    slider.style.height = 25 + "px";
+    slider.style.border_color = "white";
+    slider.style.background = "transparent";
+    slider.style.setProperty('--SliderColor', "white")
     }
-    pre_load_images(slider_group, sliders);
-    sliders.forEach(slider => {
-        if (slider.dataset.type === "power"){
-        slider.style.height = 25 + "px";
-        slider.style.border_color = "white";
-        slider.style.background = "transparent";
-        slider.style.setProperty('--SliderColor', "white")
-        }
-        else{
-        slider.style.setProperty('--SliderColor', demo_colors[slider.value])
-        }
+    else{
+    slider.style.setProperty('--SliderColor', demo_colors[slider.value])
+    }
+    slider.addEventListener("input", function () {
+      if (slider.dataset.type === "color")
+          slider.style.setProperty('--SliderColor', demo_colors[slider.value])
+      img.src = getImagePath(slider_group, sliders);
     });
-
-    sliders.forEach(slider => {
-        slider.addEventListener("input", function () {
-        if (slider.dataset.type === "color")
-            slider.style.setProperty('--SliderColor', demo_colors[slider.value])
-        img.src = getImagePath(slider_group, sliders);
-        });
-    });
-    demo_slider_containers.forEach(demo_slider_container => {
-      // rect = demo_slider_container.parentElement.parentElement.getElementsByTagName('img')[0].getBoundingClientRect();
-      // height = rect.height;
-      // width = rect.width;
-      // demo_slider_container.style.width = width + 'px';
-      // demo_slider_container.style.height = height + 'px';
-      demo_slider_container.style.display = 'block';
-      demo_slider_container.style.left = parseFloat(demo_slider_container.dataset.x)*100 +  '%';
-      demo_slider_container.style.top =  parseFloat(demo_slider_container.dataset.y)*100 + '%';
-    });
-    const demoOverlay = document.querySelector('.demo-overlay');
-
-    demoOverlay.addEventListener('click', () => {
-      demoOverlay.style.display = 'none';
-    });
+  };
+  demo_slider_containers.forEach(demo_slider_container => {
+    demo_slider_container.style.display = 'block';
+    demo_slider_container.style.left = parseFloat(demo_slider_container.dataset.x)*100 +  '%';
+    demo_slider_container.style.top =  parseFloat(demo_slider_container.dataset.y)*100 + '%';
   });
+}
+
+async function* loadDemo() {
+  const images = document.querySelectorAll('.demo_img');
+  const sliderGroups = document.querySelectorAll('.slider_group');
+  // Add the overlay over the demo
+  const demoOverlay = document.querySelector('.demo-overlay');
+  demoOverlay.addEventListener('click', () => {
+    demoOverlay.style.display = 'none';
+  });
+
+  for (let [group_index, slider_group] of sliderGroups.entries()) {
+    const img = images[group_index];
+    yield loadSingleDemoExample(slider_group, img);
+  };
 };
 
 
-function setupOverlayCarousel() {
+async function setupOverlayCarousel() {
+  var options = {
+    slidesToScroll: 1,
+    slidesToShow: 3,
+    loop: true,
+    infinite: true,
+    autoplay: false,
+    autoplaySpeed: 3000,
+  }
+  // Initialize all div with carousel class
+  var carousels = bulmaCarousel.attach('#results-carousel', options);
+  // Loop on each carousel initialized
+  for(var i = 0; i < carousels.length; i++) {
+    // Add listener to  event
+    carousels[i].on('before:show', state => {
+      console.log(state);
+    });
+  }
+  // Access to bulmaCarousel instance of an element
+  var element = document.querySelector('#my-element');
+  if (element && element.bulmaCarousel) {
+    // bulmaCarousel instance is available as element.bulmaCarousel
+    element.bulmaCarousel.on('before-show', function(state) {
+      console.log(state);
+    });
+  }
+
+  // Prevent carousel from intercepting slider interactions
+  $('.slider').on('mousedown touchstart', function(event) {
+      event.stopPropagation();
+  });
   // --- Mouse Event Handlers for Overlay ---
   const items = document.querySelectorAll('.item');
   items.forEach(item => {
@@ -217,7 +197,7 @@ function setupOverlayCarousel() {
 }
 
 
-function setupVirtualPointlight() {
+async function setupVirtualPointlight() {
   const containers = document.getElementsByClassName('virtual-container');
   for (let container of containers) {
     const sourceDir = container.dataset.sourceDir;
@@ -241,12 +221,14 @@ function setupVirtualPointlight() {
         for (let value in [0, 1, 2]) {
           const curName = String(value).padStart(3, '0') + "_" + button.dataset.imgName;
           const img = new Image();
+          img.loading = "lazy";
           img.src = sourceDir + curName;
           images.push(img);
         }
       }
       else {
         const img = new Image();
+        img.loading = "lazy";
         img.src = imagePath;
         images.push(img);
       }
