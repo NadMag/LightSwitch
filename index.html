@@ -379,7 +379,7 @@
             <!-- You can adjust the intensity of each light source by moving the sliders. -->
             Note how light phenonmena are consistent across different intensities, allowing for interactive editing.   
           </p>
-          <div id="intensityCarousel" class="carousel slide" data-bs-theme="light">
+          <div id="intensityCarousel" class="carousel slide" data-bs-theme="dark">
             <div class="carousel-inner">
               <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class = "inner-div">
@@ -419,11 +419,11 @@
               </div>
             </div>
             <button class="carousel-control-prev my_carousel-control" type="button" data-bs-target="#intensityCarousel" data-bs-slide="prev" style="height:30%; width:60px; top:50%; transform: translateY(-50%)">
-              <span class="carousel-control-prev-icon white_carousel-control" aria-hidden="true" style="filter: invert(0) brightness(100%);"></span>
+              <span class="carousel-control-prev-icon white_carousel-control" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next my_carousel-control" type="button" data-bs-target="#intensityCarousel" data-bs-slide="next" style="height:30%; width:60px; top:50%; transform: translateY(-50%)">
-              <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(0) brightness(100%);"></span>
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
           </div>
@@ -439,7 +439,7 @@
               As a byproduct of our method, we can also solve the matting problem by ignoring
               samples that fall outside of a bounding box during rendering.
             </p>
-            <div id="colorCarousel" class="carousel slide" data-bs-theme="light">
+            <div id="colorCarousel" class="carousel slide" data-bs-theme="dark">
               <div class="carousel-inner">
                 <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                   <div class = "inner-div">
@@ -472,11 +472,11 @@
                   </div>
                 </div>
               </div>
-              <button class="carousel-control-prev my_carousel-control" type="button" data-bs-target="#colorCarousel" data-bs-slide="prev" style="height:30%px; width:60px; top:50%; transform: translateY(-50%)">
+              <button class="carousel-control-prev my_carousel-control" type="button" data-bs-target="#colorCarousel" data-bs-slide="prev" style="height:30%; width:60px; top:50%; transform: translateY(-50%)">
                 <span class="carousel-control-prev-icon white_carousel-control" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next my_carousel-control" type="button" data-bs-target="#colorCarousel" data-bs-slide="next" style="height:30%px; width:60px; top:50%; transform: translateY(-50%)">
+              <button class="carousel-control-next my_carousel-control" type="button" data-bs-target="#colorCarousel" data-bs-slide="next" style="height:30%; width:60px; top:50%; transform: translateY(-50%)">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
@@ -495,11 +495,11 @@
           <p>
             By transfering knowlege from synthetic 3D renders, <i>LightSwitch</i> can insert virtual point lights (with no geometry) into the scene.
           </p>
-          <div id="vrtualCarousel" class="carousel slide" data-bs-theme="light">
+          <div id="vrtualCarousel" class="carousel slide" data-bs-theme="dark">
             <div class="carousel-inner">
               <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class="virtual-container" data-source-dir="./static/images/virtual/statue/">
-                  <img class="mainImage demo_img" src="./static/images/virtual/statue/0.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
+                  <img class="mainImage" src="./static/images/virtual/statue/0.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
                   <button class="overlay-button" data-img-name="1.jpg" data-x="0.355" data-y="0.607"></button>
                   <button class="overlay-button" data-img-name="2.jpg" data-x="0.592" data-y="0.398"></button>
                   <button class="overlay-button" data-img-name="3.jpg" data-x="0.868" data-y="0.162"></button>
@@ -508,7 +508,7 @@
               </div>
               <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class="virtual-container" data-source-dir="./static/images/virtual/chess/">
-                  <img class="mainImage demo_img" src="./static/images/virtual/chess/chess_cond.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
+                  <img class="mainImage" src="./static/images/virtual/chess/chess_cond.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
                   <button class="overlay-button" data-img-name="1.jpg" data-x="0.15" data-y="0.3"></button>
                   <button class="overlay-button" data-img-name="2.jpg" data-x="0.35" data-y="0.3"></button>
                   <button class="overlay-button" data-img-name="3.jpg" data-x="0.60" data-y="0.3"></button>
@@ -517,7 +517,7 @@
               </div>
               <div class="content carousel-item" data-bs-pause="hover" data-bs-interval="99999999">
                 <div class="virtual-container" data-source-dir="./static/images/virtual/otagi/">
-                  <img class="mainImage demo_img" src="./static/images/virtual/otagi/otagi_cond.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
+                  <img class="mainImage" src="./static/images/virtual/otagi/otagi_cond.jpg" loading="lazy" alt="Original Image">  <!-- Initial image -->
                   <button class="overlay-button" data-img-name="1.jpg" data-x="0.15" data-y="0.3"></button>
                   <button class="overlay-button" data-img-name="2.jpg" data-x="0.35" data-y="0.3"></button>
                   <button class="overlay-button" data-img-name="3.jpg" data-x="0.60" data-y="0.3"></button>
@@ -546,12 +546,12 @@
               As a byproduct of our method, we can also solve the matting problem by ignoring
               samples that fall outside of a bounding box during rendering.
             </p>
-            <div id="ambientCarousel" class="carousel slide" data-bs-theme="light">
+            <div id="ambientCarousel" class="carousel slide" data-bs-theme="dark">
               <div class="carousel-inner">
                 <div class="content carousel-item active" data-bs-pause="hover" data-bs-interval="99999999">
                   <div class = "inner-div">
                     <div class = "centered-div">
-                      <img class="demo_img"  src="./static/images/env/temple/007.jpg" loading="lazy"> <br> <br>
+                      <img class="mainImage demo_img"  src="./static/images/env/temple/007.jpg" loading="lazy"> <br> <br>
                       <div class="slider_group" data-base="./static/images/env/temple/">
                         <div class="demo_slider_container" data-x=".445" data-y=".10" >
                           <input type="range" min="0" max="7" value="7" class="slider" data-lamp="0" data-type="power" data-multiplier="1">
