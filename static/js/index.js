@@ -285,7 +285,7 @@ async function setupVirtualPointlight() {
       const handleEnd = (event) => {
         if (sliders.length > 0) {
           let sliderValue = sliders[0].value;
-          const curName = String(sliderValue).padStart(3, '0') + "_" + "cond.png";
+          const curName = String(sliderValue).padStart(3, '0') + "_" + "cond.jpg";
           mainImage.src = sourceDir + curName;
         } else {
           mainImage.src = defaultImage;
