@@ -142,19 +142,20 @@ async function* loadDemo() {
 
 
 async function setupOverlayCarousel() {
+  const autoToggleIntervalMs = 750;
   var options = {
     slidesToScroll: 1,
     slidesToShow: 3,
     loop: true,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000,
   }
   // Initialize all div with carousel class
   var carousels = bulmaCarousel.attach('#results-carousel', options);
   // Loop on each carousel initialized
   for(var i = 0; i < carousels.length; i++) {
-    // Add listener to  event
+    // Add listener to event
     carousels[i].on('before:show', state => {
       console.log(state);
     });
@@ -170,40 +171,39 @@ async function setupOverlayCarousel() {
 
   // Prevent carousel from intercepting slider interactions
   $('.slider').on('mousedown touchstart', function(event) {
-      event.stopPropagation();
+    event.stopPropagation();
   });
+
   // --- Mouse Event Handlers for Overlay ---
   const items = document.querySelectorAll('.item');
   items.forEach(item => {
-      const overlay = item.querySelector('.carousel-overlay');
-      const sourceImage = item.querySelector('img');
-      loadOverlay(overlay);
-      item.addEventListener('mousedown', () => {
-          overlay.classList.add('active');
-          sourceImage.classList.add('inactive');
-      });
-
-      item.addEventListener('touchstart', () => {
-        overlay.classList.add('active');
-        sourceImage.classList.add('inactive');
-      });
-
-      //  Mouseup *anywhere* should hide the overlay (including outside the item).
-      document.addEventListener('mouseup', () => {  // Use document
-          overlay.classList.remove('active');
-          sourceImage.classList.remove('inactive');
-      });
-
-      document.addEventListener('touchend', () => {  // Use document
-        overlay.classList.remove('active');
-        sourceImage.classList.remove('inactive');
-      });
-
-      document.addEventListener('touchcancel', () => {  // Use document
-        overlay.classList.remove('active');
-        sourceImage.classList.remove('inactive');
-      });
-
+    const overlay = item.querySelector('.carousel-overlay');
+    const sourceImage = item.querySelector('img');
+    loadOverlay(overlay);
+    
+    // Manual mouse/touch events for toggling overlay
+    item.addEventListener('mousedown', () => {
+      overlay.classList.add('active');
+      sourceImage.classList.add('inactive');
+    });
+    item.addEventListener('touchstart', () => {
+      overlay.classList.add('active');
+      sourceImage.classList.add('inactive');
+    });
+    
+    // Mouseup and touchend anywhere should hide the overlay (including outside the item).
+    document.addEventListener('mouseup', () => {
+      overlay.classList.remove('active');
+      sourceImage.classList.remove('inactive');
+    });
+    document.addEventListener('touchend', () => {
+      overlay.classList.remove('active');
+      sourceImage.classList.remove('inactive');
+    });
+    document.addEventListener('touchcancel', () => {
+      overlay.classList.remove('active');
+      sourceImage.classList.remove('inactive');
+    });
 
     // Prevent dragging of images (important for better UX)
     item.querySelectorAll('img').forEach(img => {
@@ -212,7 +212,29 @@ async function setupOverlayCarousel() {
       });
     });
   });
+
+  // --- Automatic Toggling of Overlays ---
+  // Set an interval to toggle each overlay every 0.5 second (500 milliseconds)
+  const autoToggle = setInterval(() => {
+    items.forEach(item => {
+      const overlay = item.querySelector('.carousel-overlay');
+      const sourceImage = item.querySelector('img');
+      // Toggle the classes to show/hide the overlay and to mark the source image as inactive/active
+      overlay.classList.toggle('active');
+      sourceImage.classList.toggle('inactive');
+    });
+  }, autoToggleIntervalMs);
+
+  // --- Stop auto-toggle on carousel click ---
+  const carouselElement = document.getElementById('results-carousel');
+  if (carouselElement) {
+    carouselElement.addEventListener('click', () => {
+      clearInterval(autoToggle);
+      console.log('Auto-toggle stopped due to carousel click.');
+    });
+  }
 }
+
 
 
 async function setupVirtualPointlight() {
