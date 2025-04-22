@@ -134,6 +134,7 @@ async function setupOverlayCarousel() {
     loop: true,
     infinite: true,
     autoplay: true,
+    navigationSwipe: false,
     autoplaySpeed: 3000,
   }
   // Initialize all div with carousel class
