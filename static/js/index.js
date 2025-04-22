@@ -197,9 +197,11 @@ async function setupOverlayCarousel() {
       });
     });
   });
-  document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-  }, false);
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    document.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    }, false);
+  }
   // --- Automatic Toggling of Overlays ---
   // Set an interval to toggle each overlay every 0.5 second (500 milliseconds)
   const autoToggle = setInterval(() => {

@@ -163,8 +163,8 @@
               </div>
         </div>
         <div class="item">
-          <img src="./static/images/example_carousel/stairs_env/original.jpg" alt="original">
-          <div class="carousel-overlay" data-src="./static/images/example_carousel/stairs_env/res.jpg">
+          <img src="./static/images/example_carousel/huy-phan-LEVRaos2Ero-unsplash/cond.jpg" alt="original">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/huy-phan-LEVRaos2Ero-unsplash/result.jpg">
           </div>
         </div>
         <div class="item">
@@ -190,6 +190,16 @@
         <div class="item">
           <img src="./static/images/example_carousel/openImages/hotel_couch/original.jpg" alt="original">
           <div class="carousel-overlay" data-src="./static/images/example_carousel/openImages/hotel_couch/off.jpg">
+          </div>
+        </div>
+        <div class="item">
+          <img src="./static/images/park_sign/003.jpg" alt="original">
+          <div class="carousel-overlay" data-src="./static/images/park_sign/000.jpg">
+          </div>
+        </div>
+        <div class="item">
+          <img src="./static/images/example_carousel/stairs_env/original.jpg" alt="original">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/stairs_env/res.jpg">
           </div>
         </div>
         <div class="item">
@@ -391,9 +401,10 @@
       <div class="column is-four-fifths has-text-justified">
         <img src="./static/images/psotProcessing.png" class="approach-img" loading="lazy" alt="Approach">
         <p>
-          From a pair of real (raw) photograph pairs, we first isolate the target light change ichange.
-          Bottom row. For synthetic data, we render each light component separately. After light disentanglement both domains undergo light
-          arithmetic to create parameterized sequences of images irelit (α, γ, ct), which are later tone mapped together to SDR.
+          From a pair of real (raw) photograph pairs, we first isolate the target light change.
+          Bottom row. For synthetic data, we render each light component separately. 
+          These disentangled components are then scaled and combined to create parameterized sequences of images in linear color space.
+          We use both a sequence consistent tone-mapping strategy and tone-map each image individually to SDR.
         </p>
       </div>
     </div>
@@ -401,9 +412,9 @@
       <div class="column is-four-fifths has-text-justified">
         <img src="./static/images/diffusionConditions.png" loading="lazy" class="approach-img" alt="Approach">
         <p>
-          Spatial conditions (input image, target light mask and depth map) are injected to input noise via a learned 1x1 convolution.
-          Light intensity and color control are applied by scaling the intensity and color of the target light mask.
-          Global controls (ambient lightintensity and tone-mapping value) are projected to text embedding dimension and inserted through cross-attention.
+          We use different conditioning schemes for localized spatial signals and for global controls.
+          Spatial conditions include the input image a depth map of the input image, and two spatial segmentation masks for the target light source intensity change and color respectively.
+          Global controls (ambient light intensity and tone-mapping strategy) are projected to text embedding dimension and inserted through cross-attention.
         </p>
       </div>
     </div>
@@ -482,8 +493,8 @@
         <div class="columns is-centered">
           <div class="column">
             <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
+              Our method can create colored illumination according to user input.
+              Use the colored slider to adjust the color of the light source.
             </p>
             <div id="colorCarousel" class="carousel slide" data-bs-theme="dark">
               <div class="carousel-inner">
@@ -540,6 +551,7 @@
           <h2 class="title is-3 centered-text">Virtual Point Light</h2>
           <p>
             By transfering knowlege from synthetic 3D renders, <i>LightSwitch</i> can insert virtual point lights (with no geometry) into the scene.
+            Click the circle to light a virtual point light.
           </p>
           <div id="vrtualCarousel" class="carousel slide" data-bs-theme="dark">
             <div class="carousel-inner">
@@ -589,8 +601,8 @@
         <div class="columns is-centered">
           <div class="column">
             <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
+              Disentangling the target light from the ambient light allows enables control over light that enters through windows, which is not easilly controlled physically.
+              <!-- Note how light emitted from visible source is preserved in this transformation. -->
             </p>
             <div id="ambientCarousel" class="carousel slide" data-bs-theme="dark">
               <div class="carousel-inner">
