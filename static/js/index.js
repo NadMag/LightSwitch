@@ -1,20 +1,5 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-
-// $(document).ready(function() {
-//     setupOverlayCarousel();
-//     let i = 0;
-//     const loadDemoGenerator = loadDemo();
-//     // const _ = loadDemoGenerator.next();
-//     //console.log('Loaded demo 0');
-//     for await (const _ of loadDemoGenerator) {
-//       console.log('Loaded demo ' + i);
-//       i++;
-//     }
-//     setupVirtualPointlight();
-//     console.log('Loaded virtual pointlight');
-// })
-
 document.addEventListener("DOMContentLoaded", async function(event) { 
   await setupOverlayCarousel();
   let i = 0;
@@ -181,6 +166,20 @@ async function setupOverlayCarousel() {
     const sourceImage = item.querySelector('img');
     loadOverlay(overlay);
     
+    sourceImage.addEventListener('contextmenu', e => e.preventDefault());
+    sourceImage.addEventListener('touchstart', e => {
+      // Optional: start a timer to detect long press
+      sourceImage.longPressTimer = setTimeout(() => {
+        e.preventDefault();
+      }, 500); // 500ms threshold for long press
+    });
+    sourceImage.addEventListener('touchend', () => {
+      clearTimeout(sourceImage.longPressTimer);
+    });
+    sourceImage.addEventListener('touchmove', () => {
+      clearTimeout(sourceImage.longPressTimer);
+    });
+
     // Manual mouse/touch events for toggling overlay
     item.addEventListener('mousedown', () => {
       overlay.classList.add('active');
@@ -212,7 +211,6 @@ async function setupOverlayCarousel() {
       });
     });
   });
-
   // --- Automatic Toggling of Overlays ---
   // Set an interval to toggle each overlay every 0.5 second (500 milliseconds)
   const autoToggle = setInterval(() => {
