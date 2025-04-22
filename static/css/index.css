@@ -17,20 +17,6 @@ body {
   font-variant: small-caps;
 }
 
-
-img {
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none; /* Prevent iOS callout */
-  user-select: none;
-  pointer-events: auto;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none; /* iOS: disable callout menu */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-
-
 .teaser .hero-body {
   padding-top: 1rem;
   padding-bottom: 1rem;

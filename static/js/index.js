@@ -166,20 +166,6 @@ async function setupOverlayCarousel() {
     const sourceImage = item.querySelector('img');
     loadOverlay(overlay);
     
-    sourceImage.addEventListener('contextmenu', e => e.preventDefault());
-    sourceImage.addEventListener('touchstart', e => {
-      // Optional: start a timer to detect long press
-      sourceImage.longPressTimer = setTimeout(() => {
-        e.preventDefault();
-      }, 500); // 500ms threshold for long press
-    });
-    sourceImage.addEventListener('touchend', () => {
-      clearTimeout(sourceImage.longPressTimer);
-    });
-    sourceImage.addEventListener('touchmove', () => {
-      clearTimeout(sourceImage.longPressTimer);
-    });
-
     // Manual mouse/touch events for toggling overlay
     item.addEventListener('mousedown', () => {
       overlay.classList.add('active');
