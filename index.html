@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+        content="Fine-tuning diffusion models for single-image parameteric control over light source.">
   <meta name="keywords" content="Diffusion, Relighting">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MethodName</title>
+  <title>LightLab: Controlling Light Sources in Images with Diffusion Models</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -49,33 +49,42 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">MethodName: Anonymous Title</h1>
+          <h1 class="title is-2 publication-title">LightLab: Controlling Light Sources in Images with Diffusion Models</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="">Annonymous Authors</a><sup>1</sup>,
-            </span>
-            <!-- <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+              <a href="https://scholar.google.com/citations?user=2xIrHR8AAAAJ&hl=iw">Nadav Magar</a><sup>1, 2</sup>,
             </span>
             <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
+              <a href="https://amirhertz.github.io/">Amir Hertz</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
+              <a href="https://www.tabellion.org/et/">Eric Tabellion</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
+              <a href="https://www.tabellion.org/et/">Kiran Murthy</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span> -->
+              <a href="https://scholar.google.co.il/citations?user=Zi5KiDsAAAAJ&hl=en">Yael Pritch</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=NIRv_L8AAAAJ&hl=en">Alex Rav-Acha</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://faculty.runi.ac.il/arik/site/index.asp">Ariel Shamir</a><sup>* 3, 2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.cs.huji.ac.il/~yedid/">Yedid Hoshen</a><sup>* 4, 2</sup>
+            </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Annonymous Corporation,</span>
-            <!-- <span class="author-block"><sup>2</sup>Google Research</span> -->
+            <span class="author-block"><sup>1</sup>Tel Aviv University</span>
+            <span class="author-block"><sup>2</sup>Google</span>
+            <span class="author-block"><sup>3</sup>Reichman University</span>
+            <span class="author-block"><sup>4</sup>Hebrew University of Jerusalem</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup>Denotes equal advising</span>
           </div>
 
           <div class="column has-text-centered">
@@ -205,6 +214,11 @@
         <div class="item">
           <img src="./static/images/example_carousel/stairs_env/original.jpg" alt="original">
           <div class="carousel-overlay" data-src="./static/images/example_carousel/stairs_env/res.jpg">
+          </div>
+        </div>
+        <div class="item">
+          <img src="./static/images/example_carousel/Adam ElsheimerCeresatHecubaHome/cond.jpg" alt="original">
+          <div class="carousel-overlay" data-src="./static/images/example_carousel/Adam ElsheimerCeresatHecubaHome/result.jpg">
           </div>
         </div>
         <div class="item">
@@ -362,13 +376,13 @@
             <div class = "inner-div">
               <div class = "centered-div">
                 <div class="virtual-container" data-source-dir="./static/images/carnaval/">
-                  <img class="mainImage vir_demo_img" src="./static/images/carnaval/000_cond.jpg" alt="Original Image">
+                  <img class="mainImage vir_demo_img" src="./static/images/carnaval/002_cond.jpg" alt="Original Image">
                   <button class="overlay-button" data-img-name="left.jpg" data-x="0.13" data-y="0.27"></button>
                   <button class="overlay-button" data-img-name="face.jpg" data-x="0.46" data-y="0.48"></button>
                   <button class="overlay-button" data-img-name="right.jpg" data-x="0.93" data-y="0.13"></button>
                   <div class="vir_slider_group" data-base="./static/images/carnaval/">
                     <div class="vir_demo_slider_container" data-x=".45" data-y=".2" style="display: block; left: 45%; top: 10%; width: 9%">
-                      <input type="range" min="0" max="2" value="0" class="slider vir_demo_slider" data-lamp="1" data-type="power" data-multiplier="1">
+                      <input type="range" min="0" max="2" value="2" class="slider vir_demo_slider" data-lamp="1" data-type="power" data-multiplier="1">
                     </div>
                   </div>
                 </div>
@@ -694,7 +708,7 @@
 <section class="section" id="Acknowledgements">
   <div class="container is-max-desktop content has-text-centered">
     <h2 class="centered-text title is-3">Acknowledgements</h2>
-    <p>Here we would thank the many people who helped us in this publication</p>
+    <p>We thank Kiran Murthy for his valuable contribution and guidance in tone-mapping linear color images. We are also very grateful to Alberto García García, Erroll Wood, Jesús Pérez and Iker J. de los Mozos, for their help and contributions to the synthetic rendering effort. Finally, we also thank Dani Lischinski, Andrey Voynov, Bar Cavia, Tal Reiss, Daniel Winter, Yarden Frenkel, Asaf Shul, Matan Cohen, Julian Iseringhausen, Francois Bleibel, Chloe LeGendre, Dani Cohen-Or and Or Patashnik for discussion and their support that aided and improved our work.</p>
   </div>
 </section>
 
