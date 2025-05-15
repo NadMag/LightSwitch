@@ -4,8 +4,6 @@
 <img src="./static/images/teaser_v6.png" width="800px"/>
 </p>
 
-*NeuralSVG generates vector graphics from text prompts with ordered and editable shapes. Our method supports dynamic conditioning, such as background color, which facilitating the generation of multiple color palettes for a single learned representation.*
-
 #### Nadav Magar, Amir Hertz, Eric Tabellion, Yael Pritch, Alex Rav-Acha, Ariel Shamir, Yedid Hoshen*
 
 > Controlling light sources in an image is a fundamental aspect of photography that affects the subject, depth separation, colors, and mood of the image. Existing relighting methods either rely on multiple input views to perform inverse rendering at inference time, or fail to provide explicit control.
